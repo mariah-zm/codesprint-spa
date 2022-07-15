@@ -1,6 +1,9 @@
-import { QuizQuestion } from "./quiz-question";
-
 export class Quiz {
-    quizName!: string;
-    questions!: [QuizQuestion];
+    name!: string;
+    slug!: string;
+    description!: string;
+    passingScore!: number;
+    showCorrect!: boolean;
+    msgFail!: boolean;
+    msgSuccess!: boolean;
 }
