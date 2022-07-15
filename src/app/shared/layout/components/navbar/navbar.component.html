@@ -1,5 +1,6 @@
 <header>
-    <nav class="navbar fixed-top navbar-expand-md navbar-light bg-white mb-3 border-bottom border-2" [@navbarScroll]="isScrolled" (scroll)="onWindowScroll()">
+    <nav class="navbar fixed-top navbar-expand-md navbar-light bg-white mb-3 border-bottom border-2"
+        [@navbarScroll]="isScrolled" (scroll)="onWindowScroll()">
         <div class="container">
             <a class="navbar-brand text-primary" routerLink="/">
                 <img class="img-responsive me-1" src="assets/images/logo.png" alt="Inquizit Logo">
@@ -24,15 +25,19 @@
                         </li>
                     </ng-container>
                     <ng-container *ngIf="isSignedIn">
-                        <li class="nav-item">
-                            <a class="nav-link me-2 mb-1 mb-md-0" [routerLink]="">My Quizzes</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link me-2 mb-1 mb-md-0" (click)="onLogout()">Log Out</a>
-                        </li>
+                        <ng-container *ngIf="accountType === 'teacher'">
+                            <li class="nav-item">
+                                <a class="nav-link me-2 mb-1 mb-md-0" [routerLink]="">My Quizzes</a>
+                            </li>
+    
+                            <li class="nav-item">
+                                <a class="btn btn-custom-colour-green d-block d-lg-inline-block btn-navbar me-3 my-1 my-md-0"
+                                    [routerLink]="'/create-quiz'">Create Quiz</a>
+                            </li>
+                        </ng-container>
                         <li class="nav-item">
                             <a class="btn btn-custom-colour d-block d-lg-inline-block btn-navbar my-1 my-md-0"
-                                [routerLink]="'/create-quiz'">Create Quiz</a>
+                                (click)="onLogout()">Log Out</a>
                         </li>
                     </ng-container>
                 </ul>

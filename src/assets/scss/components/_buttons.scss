@@ -16,6 +16,11 @@
     @include button-variant($background: c.$colour-sunglow, $border:c.$colour-sunglow, $hover-background: c.$colour-sunglow, $hover-border: c.$colour-dark);
 }
 
+.btn-custom-colour-green {
+    @include button-variant($background: c.$colour-green, $border:c.$colour-green, $hover-background: c.$colour-green, $hover-border: c.$colour-dark);
+}
+
+
 .btn:focus, .btn:active {
     box-shadow: none;
 }

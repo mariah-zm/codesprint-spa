@@ -13,6 +13,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   public isMenuCollapsed: boolean = true;
   public isSignedIn: boolean = false;
   isScrolled: string = "noScroll";
+  accountType = "teacher";
 
   private authSubscription!: Subscription;
 
