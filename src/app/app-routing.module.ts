@@ -17,6 +17,10 @@ const routes: Routes = [
         loadChildren: () => import('./modules/create-quiz/create-quiz.module').then(c => c.CreateQuizModule)
     },
     {
+        path: 'explore',
+        loadChildren: () => import('./modules/explore/explore.module').then(e => e.ExploreModule)
+    },
+    {
         path: 'not-found',
         loadChildren: () => import('./modules/not-found/not-found.module').then(e => e.NotFoundModule)
     },

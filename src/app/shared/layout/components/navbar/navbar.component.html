@@ -11,7 +11,7 @@
             <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse">
                 <ul class="navbar-nav ms-auto align-items-lg-center text-center">
                     <li class="nav-item">
-                        <a class="nav-link me-md-2" [routerLink]="">Explore Quizzes</a>
+                        <a class="nav-link me-md-2" [routerLink]="'/explore'">Explore Quizzes</a>
                     </li>
                     <ng-container *ngIf="!isSignedIn">
                         <li class="nav-item">
