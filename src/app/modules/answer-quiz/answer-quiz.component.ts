@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { QuestionType } from 'src/app/core/models/enums/question-type.enum';
 import { QuizQuestion } from 'src/app/core/models/quiz-question';
 import { QuizResponse } from 'src/app/core/models/quiz-response';
@@ -8,9 +8,9 @@ import { QuizResponse } from 'src/app/core/models/quiz-response';
   templateUrl: './answer-quiz.component.html'
 })
 export class AnswerQuizComponent implements OnInit {
-  quiz!: QuizResponse;
-  correct!: number;
-  score!: number;
+  @Input() quiz!: QuizResponse;
+  @Input() correct!: number;
+  @Input() score!: number;
   progress!: number;
   currentQuestion!: QuizQuestion;
 
