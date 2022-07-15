@@ -13,15 +13,15 @@ export class QuizResponse {
     constructor() {
         this.name = "Maths Quiz";
 
-        const que1ans1 = new QuizAnswer().setValues("2", 1, true);
-        const que1ans2 = new QuizAnswer().setValues("1", 0, false);
+        const que1ans1 = new QuizAnswer("2", 1, true);
+        const que1ans2 = new QuizAnswer("1", 0, false);
 
-        const que2ans1 = new QuizAnswer().setValues("1", 1, true);
-        const que2ans2 = new QuizAnswer().setValues("2", 0, false);
-        const que2ans3 = new QuizAnswer().setValues("3", 1, true);
+        const que2ans1 = new QuizAnswer("1", 1, true);
+        const que2ans2 = new QuizAnswer("2", 0, false);
+        const que2ans3 = new QuizAnswer("3", 1, true);
 
-        const que3ans1 = new QuizAnswer().setValues("True", 1, true);
-        const que3ans2 = new QuizAnswer().setValues("False", 0, false);
+        const que3ans1 = new QuizAnswer("True", 1, true);
+        const que3ans2 = new QuizAnswer("False", 0, false);
 
         this.questions = [
             new QuizQuestion(

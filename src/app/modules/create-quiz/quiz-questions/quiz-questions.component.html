@@ -17,21 +17,21 @@
         <div class="row my-4">
             <div class="col-md-4">
                 <div class="flex mb-3">
-                    Select question type:
+                    Select question type<span class="text-primary">*</span>
                 </div>
                 <div class="row d-flex flex">
                     <div class="col-sm-3 col-md-12 form-check me-4">
                         <input class="form-check-input" type="radio" name="questionType" id="singleChoice"
                             [checked]="questionType === 1" (change)="onChangeType(1)">
                         <label class="form-check-label" for="singleChoice">
-                            Single Choice
+                            Single Answer
                         </label>
                     </div>
                     <div class="col-sm-3 col-md-12 form-check me-4">
                         <input class="form-check-input" type="radio" name="questionType" id="multipleChoice"
                             [checked]="questionType === 2" (change)="onChangeType(2)">
                         <label class="form-check-label" for="multipleChoice">
-                            Multiple Choice
+                            Multiple Answers
                         </label>
                     </div>
                     <div class="col-sm-3 col-md-12 form-check">
@@ -45,82 +45,119 @@
             </div>
             <div class="col-md-8 my-sm-4 my-md-0">
                 <ng-container [ngSwitch]="questionType ">
-                    <div *ngSwitchCase="1" [formGroup]="answersForm">
+                    <div *ngSwitchCase="1">
                         <div class="flex mb-3">
-                            Type in answers and select the correct one:
+                            Type in answers and select the correct one<span class="text-primary">*</span>
                         </div>
-
-                        <ng-container *ngFor="let answer of answers.controls; let idx = index;">
-                            <div class="row">
-                                <div class="form-check my-1">
-                                    <input class="form-check-input mt-2" type="radio" name="answers"
-                                        id="answer{{idx + 1}}" [checked]="idx == 0">
-                                    <label class="form-check-label" for="answer{{idx + 1}}">
-                                        <div class="flex d-flex align-items-center">
-                                            <input class="form-control" id="answer{{idx + 1}}"
-                                                placeholder="Answer {{idx + 1}}...">
-
-                                            <label for="score{{idx + 1}}" class="form-labe px-4">Score:</label>
-                                            <input class="form-control" id="score{{idx + 1}}" placeholder="0">
-                                        </div>
-                                    </label>
+                        <form [formGroup]="answersForm">
+                            <ng-container *ngFor="let answer of answers; let idx = index;">
+                                <div class="row">
+                                    <div class="form-check my-1">
+                                        <input class="form-check-input mt-2" type="radio" name="answers"
+                                            id="answer{{idx}}" (change)="onChangeCorrect(idx)">
+                                        <label class="form-check-label" for="answer{{idx}}">
+                                            <div class="flex d-flex align-items-center">
+                                                <input class="form-control" id="answer{{idx}}"
+                                                    placeholder="Answer {{idx + 1}}..." formControlName="answer{{idx}}"
+                                                    [ngClass]="{ 'is-invalid': formSubmitted && af('answer' + idx).errors }">
+                                                <label for="score{{idx}}" class="form-labe px-4">Score<span
+                                                        class="text-primary">*</span></label>
+                                                <input class="form-control" id="score{{idx}}" value="0"
+                                                    formControlName="score{{idx}}">
+                                            </div>
+                                        </label>
+                                    </div>
                                 </div>
-                            </div>
-                        </ng-container>
+                            </ng-container>
+                        </form>
                         <div class="row my-2">
                             <div>
                                 <button type="button" class="btn btn-link text-neutral-dark" (click)="onAddAnswer()">
                                     Add another answer.
                                 </button>
                             </div>
+                            <div data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                title="A question must have at least two answers">
+                                <button type="button" class="btn btn-link text-neutral-dark" (click)="onRemoveAnswer()"
+                                    [ngClass]="{ 'disabled': answers.length == 2}">
+                                    Remove last answer.
+                                </button>
+                            </div>
                         </div>
                     </div>
-                    <div *ngSwitchCase="2" [formGroup]="answersForm">
+                    <div *ngSwitchCase="2">
                         <div class="flex mb-3">
-                            Type in answers and select the correct ones:
+                            Type in answers and select the correct ones<span class="text-primary">*</span>
                         </div>
-                        <ng-container *ngFor="let answer of answers.controls; let idx = index;">
-                            <div class="row">
-                                <div class="form-check my-1">
-                                    <input class="form-check-input mt-2" type="checkbox" name="answers"
-                                        id="answer{{idx + 1}}" [checked]="idx == 0">
-                                    <label class="form-check-label" for="answer{{idx + 1}}">
-                                        <div class="flex d-flex align-items-center">
-                                            <input class="form-control" id="answer{{idx + 1}}"
-                                                placeholder="Answer {{idx + 1}}...">
-
-                                            <label for="score{{idx + 1}}" class="form-labe px-4">Score:</label>
-                                            <input class="form-control" id="score{{idx + 1}}" placeholder="0">
-                                        </div>
-                                    </label>
+                        <form [formGroup]="answersForm">
+                            <ng-container *ngFor="let answer of answers; let idx = index;">
+                                <div class="row">
+                                    <div class="form-check my-1">
+                                        <input class="form-check-input mt-2" type="checkbox" name="answers"
+                                            id="answer{{idx}}" (change)="onChangeCorrectMultiple(idx)">
+                                        <label class="form-check-label" for="answer{{idx}}">
+                                            <div class="flex d-flex align-items-center">
+                                                <input class="form-control" id="answer{{idx}}"
+                                                    placeholder="Answer {{idx + 1}}..." formControlName="answer{{idx}}"
+                                                    [ngClass]="{ 'is-invalid': formSubmitted && af('answer' + idx).errors }">
+                                                <label for="score{{idx}}" class="form-labe px-4">Score<span
+                                                        class="text-primary">*</span></label>
+                                                <input class="form-control" id="score{{idx}}" value="0"
+                                                    formControlName="score{{idx}}">
+                                            </div>
+                                        </label>
+                                    </div>
                                 </div>
-                            </div>
-                        </ng-container>
+                            </ng-container>
+                        </form>
                         <div class="row my-2">
                             <div>
                                 <button type="button" class="btn btn-link text-neutral-dark" (click)="onAddAnswer()">
                                     Add another answer.
+                                </button>
+                            </div>
+                            <div data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                title="A question must have at least two answers">
+                                <button type="button" class="btn btn-link text-neutral-dark" (click)="onRemoveAnswer()"
+                                    [ngClass]="{ 'disabled': answers.length == 2}">
+                                    Remove last answer.
                                 </button>
                             </div>
                         </div>
                     </div>
                     <div *ngSwitchCase="3">
                         <div class="flex mb-3">
-                            Select the correct answer:
+                            Select the correct answer<span class="text-primary">*</span>
                         </div>
-                        <div class="form-check me-4">
-                            <input class="form-check-input" type="radio" name="trueFalseAns" id="true" checked>
-                            <label class="form-check-label" for="true">
-                                True
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="trueFalseAns" id="false">
-                            <label class="form-check-label" for="false">
-                                False
-                            </label>
-                        </div>
+                        <form [formGroup]="answersForm">
+                            <div class="form-check me-4">
+                                <input class="form-check-input" type="radio" name="trueFalseAns" id="true"
+                                    (change)="onChangeCorrect(0)">
+                                <label class="form-check-label" for="true">
+                                    True
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="trueFalseAns" id="false"
+                                    (change)="onChangeCorrect(1)">
+                                <label class="form-check-label" for="false">
+                                    False
+                                </label>
+                            </div>
+                            <div class="row my-3">
+                                <div class="col-md-2 col-form-label">
+                                    <label for="score" class="form-label">Score<span
+                                            class="text-primary">*</span></label>
+                                </div>
+                                <div class="col-md-10">
+                                    <input class="form-control" id="score" value="0" formControlName="score">
+                                </div>
+                            </div>
+                        </form>
                     </div>
+                </ng-container>
+                <ng-container *ngIf="formSubmitted && hasErrors">
+                    <p class="text-primary">{{answersError}}</p>
                 </ng-container>
             </div>
         </div>
