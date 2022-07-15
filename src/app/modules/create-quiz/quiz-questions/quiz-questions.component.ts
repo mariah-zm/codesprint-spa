@@ -65,7 +65,7 @@ export class QuizQuestionsComponent implements OnInit {
 
     const answers = [new QuizAnswer()];
 
-    this.question = new QuizQuestion(this.quesForm.controls['question'].value, this.questionType, answers, this.correctAnswer);
+    this.question = new QuizQuestion(this.quesForm.controls['question'].value, this.questionType, answers);
     console.log(this.question);
 
     // Call backend to save quiz

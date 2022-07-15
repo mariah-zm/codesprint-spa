@@ -44,82 +44,84 @@
                 </div>
             </div>
             <div class="col-md-8 my-sm-4 my-md-0">
-                <div *ngIf="questionType === 1" [formGroup]="answersForm">
-                    <div class="flex mb-3">
-                        Type in answers and select the correct one:
-                    </div>
+                <ng-container [ngSwitch]="questionType ">
+                    <div *ngSwitchCase="1" [formGroup]="answersForm">
+                        <div class="flex mb-3">
+                            Type in answers and select the correct one:
+                        </div>
 
-                    <ng-container *ngFor="let answer of answers.controls; let idx = index;">
-                        <div class="row">
-                            <div class="form-check my-1">
-                                <input class="form-check-input mt-2" type="radio" name="answers" id="answer{{idx + 1}}"
-                                    [checked]="idx == 0">
-                                <label class="form-check-label" for="answer{{idx + 1}}">
-                                    <div class="flex d-flex align-items-center">
-                                        <input class="form-control" id="answer{{idx + 1}}"
-                                            placeholder="Answer {{idx + 1}}...">
+                        <ng-container *ngFor="let answer of answers.controls; let idx = index;">
+                            <div class="row">
+                                <div class="form-check my-1">
+                                    <input class="form-check-input mt-2" type="radio" name="answers"
+                                        id="answer{{idx + 1}}" [checked]="idx == 0">
+                                    <label class="form-check-label" for="answer{{idx + 1}}">
+                                        <div class="flex d-flex align-items-center">
+                                            <input class="form-control" id="answer{{idx + 1}}"
+                                                placeholder="Answer {{idx + 1}}...">
 
-                                        <label for="score{{idx + 1}}" class="form-labe px-4">Score:</label>
-                                        <input class="form-control" id="score{{idx + 1}}" placeholder="0">
-                                    </div>
-                                </label>
+                                            <label for="score{{idx + 1}}" class="form-labe px-4">Score:</label>
+                                            <input class="form-control" id="score{{idx + 1}}" placeholder="0">
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                        </ng-container>
+                        <div class="row my-2">
+                            <div>
+                                <button type="button" class="btn btn-link text-neutral-dark" (click)="onAddAnswer()">
+                                    Add another answer.
+                                </button>
                             </div>
                         </div>
-                    </ng-container>
-                    <div class="row my-2">
-                        <div>
-                            <button type="button" class="btn btn-link text-neutral-dark" (click)="onAddAnswer()">
-                                Add another answer.
-                            </button>
+                    </div>
+                    <div *ngSwitchCase="2" [formGroup]="answersForm">
+                        <div class="flex mb-3">
+                            Type in answers and select the correct ones:
                         </div>
-                    </div>
-                </div>
-                <div *ngIf="questionType === 2">
-                    <div class="flex mb-3">
-                        Type in answers and select the correct ones:
-                    </div>
-                    <ng-container *ngFor="let answer of answers.controls; let idx = index;">
-                        <div class="row">
-                            <div class="form-check my-1">
-                                <input class="form-check-input mt-2" type="checkbox" name="answers"
-                                    id="answer{{idx + 1}}" [checked]="idx == 0">
-                                <label class="form-check-label" for="answer{{idx + 1}}">
-                                    <div class="flex d-flex align-items-center">
-                                        <input class="form-control" id="answer{{idx + 1}}"
-                                            placeholder="Answer {{idx + 1}}...">
+                        <ng-container *ngFor="let answer of answers.controls; let idx = index;">
+                            <div class="row">
+                                <div class="form-check my-1">
+                                    <input class="form-check-input mt-2" type="checkbox" name="answers"
+                                        id="answer{{idx + 1}}" [checked]="idx == 0">
+                                    <label class="form-check-label" for="answer{{idx + 1}}">
+                                        <div class="flex d-flex align-items-center">
+                                            <input class="form-control" id="answer{{idx + 1}}"
+                                                placeholder="Answer {{idx + 1}}...">
 
-                                        <label for="score{{idx + 1}}" class="form-labe px-4">Score:</label>
-                                        <input class="form-control" id="score{{idx + 1}}" placeholder="0">
-                                    </div>
-                                </label>
+                                            <label for="score{{idx + 1}}" class="form-labe px-4">Score:</label>
+                                            <input class="form-control" id="score{{idx + 1}}" placeholder="0">
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                        </ng-container>
+                        <div class="row my-2">
+                            <div>
+                                <button type="button" class="btn btn-link text-neutral-dark" (click)="onAddAnswer()">
+                                    Add another answer.
+                                </button>
                             </div>
                         </div>
-                    </ng-container>
-                    <div class="row my-2">
-                        <div>
-                            <button type="button" class="btn btn-link text-neutral-dark" (click)="onAddAnswer()">
-                                Add another answer.
-                            </button>
+                    </div>
+                    <div *ngSwitchCase="3">
+                        <div class="flex mb-3">
+                            Select the correct answer:
+                        </div>
+                        <div class="form-check me-4">
+                            <input class="form-check-input" type="radio" name="trueFalseAns" id="true" checked>
+                            <label class="form-check-label" for="true">
+                                True
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="trueFalseAns" id="false">
+                            <label class="form-check-label" for="false">
+                                False
+                            </label>
                         </div>
                     </div>
-                </div>
-                <div *ngIf="questionType === 3">
-                    <div class="flex mb-3">
-                        Select the correct answer:
-                    </div>
-                    <div class="form-check me-4">
-                        <input class="form-check-input" type="radio" name="trueFalseAns" id="true" checked>
-                        <label class="form-check-label" for="true">
-                            True
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="trueFalseAns" id="false">
-                        <label class="form-check-label" for="false">
-                            False
-                        </label>
-                    </div>
-                </div>
+                </ng-container>
             </div>
         </div>
 

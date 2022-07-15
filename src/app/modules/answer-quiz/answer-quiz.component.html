@@ -1,3 +1,54 @@
-<app-main-layout [isCentered]="true">
-    <p>Questions</p>
+<app-main-layout [isCentered]="false">
+    <div class="container py-4">
+        <div class="row mb-4">
+            <div class="col-md-6 offset-md-3">
+                <h1 class="text-center">{{quiz.name}}</h1>
+
+                <div class="py-5">
+                    <div class="progress">
+                        <div class="progress-bar bg-primary" role="progressbar" [ngStyle]="{ 'width.%': progress }">
+                        </div>
+                    </div>
+                    <div class="py-5">
+                        <div class="card py-3 px-5">
+                            <div class="card-body">
+                                <div class="row py-2">
+                                    <p class="text-grey"><small>Question {{currentQues}} of
+                                            {{quiz.questions.length}}</small></p>
+                                    <h3><strong>{{ currentQuestion.question }}</strong></h3>
+                                    <ng-container *ngIf="currentQuestion.type == 2">
+                                        <p><small>This question has multiple answers.</small></p>
+                                    </ng-container>
+
+                                </div>
+
+                                <div class="py-3">
+                                    <ng-container *ngFor="let answer of currentQuestion.answers; let idx = index;">
+                                        <div class="row my-2 d-flex text-start">
+                                            <div class="form-check">
+                                                <input class="form-check-input me-3" type="radio" name="answers"
+                                                    id="answer{{idx}}" autocomplete="off">
+                                                <label class="form-check-label" for="answer{{idx}}">
+                                                    {{answer.answer}}
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </ng-container>
+                                </div>
+
+                                <div class="py-3">
+                                    <ng-container *ngIf="currentQues === quiz.questions.length; else next">
+                                        <button class="btn btn-neutral" (click)="onFinish()">Finish</button>
+                                    </ng-container>
+                                    <ng-template #next>
+                                        <button class="btn btn-primary" (click)="onNext()">Next</button>
+                                    </ng-template>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </app-main-layout>

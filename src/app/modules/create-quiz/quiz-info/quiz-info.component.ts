@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Quiz } from 'src/app/core/models/quiz';
+import { QuizInfo } from 'src/app/core/models/quiz-info';
 
 @Component({
   selector: 'app-quiz-info',
@@ -11,7 +11,7 @@ export class QuizInfoComponent implements OnInit {
   formErrors: string[] = [];
   infoFormSubmitted: boolean = false;
 
-  quizInfo!: Quiz;
+  quizInfo!: QuizInfo;
 
   get f() { return this.quizInfoForm.controls; }
 
@@ -39,7 +39,7 @@ export class QuizInfoComponent implements OnInit {
       return;
     }
 
-    this.quizInfo = new Quiz(this.quizInfoForm.value);
+    this.quizInfo = new QuizInfo(this.quizInfoForm.value);
     console.log(this.quizInfo);
 
     // Call backend to save quiz

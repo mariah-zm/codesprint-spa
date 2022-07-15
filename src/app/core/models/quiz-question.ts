@@ -5,12 +5,10 @@ export class QuizQuestion {
     question!: string;
     type!: QuestionType;
     answers!: QuizAnswer[];
-    correctAnswer!: number;
 
-    constructor(ques: string, type: QuestionType, ans: QuizAnswer[], correct: number) {
+    constructor(ques: string, type: QuestionType, ans: QuizAnswer[]) {
         this.question = ques;
         this.type = type;
         this.answers = ans;
-        this.correctAnswer = correct;
     }
 }

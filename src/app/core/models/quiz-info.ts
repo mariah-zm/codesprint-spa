@@ -1,4 +1,4 @@
-export class Quiz {
+export class QuizInfo {
     name!: string;
     slug!: string;
     description!: string;
@@ -7,7 +7,7 @@ export class Quiz {
     msgFail!: boolean;
     msgSuccess!: boolean;
 
-    constructor(init?: Partial<Quiz>) {
+    constructor(init?: Partial<QuizInfo>) {
         Object.assign(this, init);
     }
 }
