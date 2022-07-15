@@ -19,15 +19,25 @@
                                     <ng-container *ngIf="currentQuestion.type == 2">
                                         <p><small>This question has multiple answers.</small></p>
                                     </ng-container>
-
+                                    <ng-container *ngIf="missingAnswer">
+                                        <p class="text-primary"><small>An answer is required!</small></p>
+                                    </ng-container>
                                 </div>
 
                                 <div class="py-3">
                                     <ng-container *ngFor="let answer of currentQuestion.answers; let idx = index;">
-                                        <div class="row my-2 d-flex text-start">
+                                        <div class="row my-2 d-flex text-start align-items-center">
                                             <div class="form-check">
-                                                <input class="form-check-input me-3" type="radio" name="answers"
-                                                    id="answer{{idx}}" autocomplete="off">
+                                                <ng-container *ngIf="currentQuestion.type == 2; else radio">
+                                                    <input class="form-check-input me-3" type="checkbox" name="answers"
+                                                        id="answer{{idx}}" autocomplete="off"
+                                                        (change)="onChangeMultiple(idx)">
+                                                </ng-container>
+                                                <ng-template #radio>
+                                                    <input class="form-check-input me-3" type="radio" name="answers"
+                                                        id="answer{{idx}}" autocomplete="off"
+                                                        (change)="onChangeSingle(idx)">
+                                                </ng-template>
                                                 <label class="form-check-label" for="answer{{idx}}">
                                                     {{answer.answer}}
                                                 </label>

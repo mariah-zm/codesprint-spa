@@ -42,7 +42,7 @@ export class QuizResponse {
 
         ];
 
-        this.passingScore = 5;
+        this.passingScore = 2;
         this.msgSuccess = "Yay! You passed the Quiz."
         this.msgFail = "Boo! You did not pass the Quiz.";
         this.showCorrect = false;

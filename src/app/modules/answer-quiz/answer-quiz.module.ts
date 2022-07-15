@@ -4,6 +4,7 @@ import { AnswerQuizComponent } from './answer-quiz.component';
 import { ResultComponent } from './result/result.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AnswerQuizRoutingModule } from './answer-quiz-routing.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 

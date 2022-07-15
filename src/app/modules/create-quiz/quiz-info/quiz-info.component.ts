@@ -8,7 +8,6 @@ import { QuizInfo } from 'src/app/core/models/quiz-info';
 })
 export class QuizInfoComponent implements OnInit {
   quizInfoForm!: FormGroup;
-  formErrors: string[] = [];
   infoFormSubmitted: boolean = false;
 
   quizInfo!: QuizInfo;
@@ -32,7 +31,6 @@ export class QuizInfoComponent implements OnInit {
   }
 
   onSave() {
-    this.formErrors = [];
     this.infoFormSubmitted = true;
 
     if (this.quizInfoForm.invalid) {
