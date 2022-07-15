@@ -7,7 +7,10 @@ export class QuizQuestion {
     answers!: QuizAnswer[];
     correctAnswer!: number;
 
-    constructor(init?: Partial<QuizQuestion>) {
-        Object.assign(this, init);
+    constructor(ques: string, type: QuestionType, ans: QuizAnswer[], correct: number) {
+        this.question = ques;
+        this.type = type;
+        this.answers = ans;
+        this.correctAnswer = correct;
     }
 }

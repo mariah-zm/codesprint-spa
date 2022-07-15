@@ -17,6 +17,7 @@ export class QuizQuestionsComponent implements OnInit {
 
   question!: QuizQuestion;
   questionType = QuestionType.SingleChoice;
+  correctAnswer = 1;
 
   get f() {
     return this.quesForm.controls;
@@ -28,11 +29,7 @@ export class QuizQuestionsComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder) {
     this.quesForm = this.formBuilder.group({
-      question: ['', [Validators.required, Validators.maxLength(2)]],
-      quizPassingScore: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
-      quizShowCorrect: [''],
-      quizMsgS: ['', [Validators.required]],
-      quizMsgF: ['', [Validators.required]]
+      question: ['', [Validators.required, Validators.maxLength(250)]]
     });
 
     this.answersForm = this.formBuilder.group({
@@ -66,7 +63,9 @@ export class QuizQuestionsComponent implements OnInit {
       return;
     }
 
-    this.question = new QuizQuestion();
+    const answers = [new QuizAnswer()];
+
+    this.question = new QuizQuestion(this.quesForm.controls['question'].value, this.questionType, answers, this.correctAnswer);
     console.log(this.question);
 
     // Call backend to save quiz

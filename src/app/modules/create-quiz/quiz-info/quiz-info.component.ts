@@ -19,7 +19,7 @@ export class QuizInfoComponent implements OnInit {
     this.quizInfoForm = this.formBuilder.group({
       quizName: ['', [Validators.required]],
       quizSlug: ['', [Validators.required]],
-      quizDescription: ['', [Validators.maxLength(2)]],
+      quizDescription: ['', [Validators.maxLength(250)]],
       quizPassingScore: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
       quizShowCorrect: [''],
       quizMsgS: ['', [Validators.required]],
