@@ -1,0 +1,64 @@
+@use '../abstracts/variables' as v;
+@use '../abstracts/colours' as c;
+@use '../base/typography' as b;
+
+// Colours
+$theme-colors: (
+  "primary": c.$colour-red,
+  "secondary": c.$colour-orange,
+  "neutral": c.$colour-green,
+  "neutral-dark": c.$colour-purple,
+  "dark": c.$colour-dark,
+  "light": c.$colour-light
+);
+
+// Typography
+$font-family-sans-serif: b.$font-manrope;
+$font-family-base: $font-family-sans-serif;
+$font-size-base: v.$font-size-base;
+
+// Navbar dropdown
+$dropdown-link-active-bg: c.$colour-sunglow;
+$dropdown-link-hover-bg: c.$colour-sunglow;
+$dropdown-link-hover-color: c.$colour-light;
+
+// Navbar
+$navbar-padding-y: 0.75%;
+$navbar-light-color: c.$colour-dark;
+$navbar-light-hover-color: c.$colour-sunglow;
+
+// Forms
+$form-check-input-checked-bg-color: c.$colour-green;
+$form-check-input-focus-border: c.$colour-green;
+$form-check-input-focus-box-shadow: c.$colour-green;
+$input-btn-focus-color: c.$colour-green;
+$input-btn-border-color: c.$colour-green;
+
+// Cards
+$card-border-radius: 20px;
+
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+@import '~bootstrap/scss/utilities';
+
+@import '~bootstrap/scss/root';
+@import '~bootstrap/scss/reboot';
+@import '~bootstrap/scss/type';
+@import '~bootstrap/scss/images';
+@import '~bootstrap/scss/containers';
+@import '~bootstrap/scss/grid';
+@import '~bootstrap/scss/forms';
+@import '~bootstrap/scss/buttons';
+@import '~bootstrap/scss/close';
+@import '~bootstrap/scss/transitions';
+@import "~bootstrap/scss/dropdown";
+@import "~bootstrap/scss/nav";
+@import "~bootstrap/scss/navbar";
+@import "~bootstrap/scss/alert";
+@import "~bootstrap/scss/card";
+@import "~bootstrap/scss/progress";
+@import "~bootstrap/scss/carousel";
+@import "~bootstrap/scss/helpers/visually-hidden";
+@import "~bootstrap/scss/helpers/text-truncation";
+@import '~bootstrap/scss/utilities/api';

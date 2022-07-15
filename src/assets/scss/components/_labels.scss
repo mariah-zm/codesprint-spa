@@ -1,0 +1,16 @@
+@use '../abstracts/colours' as c;
+
+.ques-number {
+    display: block;
+    height: 40px;
+    width: 40px;
+    line-height: 40px;
+
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+
+    background-color: c.$colour-orange;
+    color: white;
+    text-align: center;
+    font-size: 1.5em;
+}

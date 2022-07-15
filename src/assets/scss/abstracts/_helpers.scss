@@ -1,0 +1,56 @@
+@use '../abstracts/variables' as a;
+@use '../abstracts/colours' as c;
+@use '../vendors' as v;
+
+.page-content {
+    margin-top: 80px;
+}
+
+.hover {
+    transition: a.$transition;
+    cursor: pointer;
+
+    &:hover {
+        color: c.$colour-sunglow;
+    }
+}
+
+.shadow-hover {
+    transition: a.$transition;
+    box-shadow: none;
+    cursor: pointer;
+
+    &:hover {
+        box-shadow: v.$box-shadow;
+        opacity: 1;
+    }
+}
+
+/* Animation */
+
+@keyframes fade-in-up {
+    from {
+        transform: translate3d(0, 40px, 0)
+    }
+
+    to {
+        transform: translate3d(0, 0, 0);
+        opacity: 1
+    }
+}
+
+
+
+.animated {
+    animation-duration: 1s;
+    animation-fill-mode: both;
+}
+
+.animated-fade-in-up {
+    opacity: 0
+}
+
+.fade-in-up {
+    opacity: 0;
+    animation-name: fade-in-up;
+}

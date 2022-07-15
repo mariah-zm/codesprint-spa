@@ -1,0 +1,20 @@
+@use '../abstracts' as a;
+
+.login-fb,.login-google {
+    padding: 15px;
+}
+
+hr.login-division {
+    height: 1.5px;
+    bottom: -0.8em;
+    position: relative;
+}
+
+.login-division-or {
+    display: block;
+    position: relative;
+    left: 50%;
+    margin-left: -1.5em;
+    background-color: a.$colour-light;
+    width: 3em;
+}

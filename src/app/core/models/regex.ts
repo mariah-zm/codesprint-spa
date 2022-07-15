@@ -1,0 +1,1 @@
+export const passwordRegex: string = '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[\\W_^]).{10,30}';

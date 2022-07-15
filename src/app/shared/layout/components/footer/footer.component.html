@@ -1,0 +1,71 @@
+<footer>
+    <div class="bg-neutral-dark text-white">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-10">
+                    <div class="row">
+                        <div class="col-md-4 mb-4">
+                            <h5 class="text-secondary">About Us</h5>
+                            <ul class="list-unstyled">
+                                <li>
+                                    <a routerLink="" class="text-reset text-decoration-none">Who We Are</a>
+                                </li>
+                                <li>
+                                    <a routerLink="" class="text-reset text-decoration-none">Contact</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <h5 class="text-secondary">Legal</h5>
+                            <ul class="list-unstyled">
+                                <li>
+                                    <a routerLink="" class="text-reset text-decoration-none">Terms & Conditions</a>
+                                </li>
+                                <li>
+                                    <a routerLink="" class="text-reset text-decoration-none">Cookie Policy</a>
+                                </li>
+                                <li>
+                                    <a routerLink="" class="text-reset text-decoration-none">Privacy Policy</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <h5 class="text-secondary">Resources</h5>
+                            <ul class="list-unstyled">
+                                <li *ngIf="!isSignedIn">
+                                    <a routerLink="" class="text-reset text-decoration-none">Join Inquizit</a>
+                                </li>
+                                <li>
+                                    <a routerLink="" class="text-reset text-decoration-none">Explore Quizzes</a>
+                                </li>
+                                <li>
+                                    <a [routerLink]="'/create-quiz'" class="text-reset text-decoration-none" *ngIf="isSignedIn">Create a Quiz</a>
+                                </li>
+                                <li>
+                                    <a routerLink="" class="text-reset text-decoration-none">FAQs</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="d-flex justify-content-lg-end justify-content-md-end justify-content-sm-start">
+                        <a href="#" class="d-inline-block footer-icon">
+                            <i-bs name="facebook" width="1.5rem" height="2rem" class="text-light me-2 footer-icon">
+                            </i-bs>
+                        </a>
+                        <a href="#" class="d-inline-block footer-icon">
+                            <i-bs name="instagram" width="1.5rem" height="2rem" class="text-light footer-icon">
+                            </i-bs>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4 pt-4 border-top border-white">
+                <div class="col-12">
+                    <p class="mb-0 text-lg-center text-md-center">Copyright © Inquizit 2022.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

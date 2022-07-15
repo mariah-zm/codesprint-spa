@@ -1,0 +1,12 @@
+@use '../abstracts/colours' as c;
+@use '../abstracts/variables' as v;
+
+.footer-icon {
+    transition: v.$transition;
+    // color: white;
+    padding: 0;
+
+    &:hover {
+        color: c.$colour-sunglow !important;
+    }
+}

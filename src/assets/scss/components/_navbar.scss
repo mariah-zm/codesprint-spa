@@ -1,0 +1,37 @@
+@use '../abstracts' as a;
+@use '../vendors/bootstrap' as b;
+
+.navbar {
+    position: fixed;
+    width: 100%;
+    z-index: 1030;
+
+    @include b.media-breakpoint-down(lg) {
+        // background: b.$color-primary;
+        box-shadow: b.$box-shadow-sm;
+        padding: 0.5rem;
+    }
+
+    .navbar-toggler {
+        border: 0;
+        margin-right: 1rem;
+    }
+
+    .nav-link {
+        font-weight: 500;
+        cursor: pointer;
+        transition: a.$transition;
+        font-size: .9rem;
+    }
+
+    .img-responsive {
+        height: 28px;
+        width: 28px;
+        /* whatever the fixed height of the bar is */
+        vertical-align: middle;
+    }
+
+    .navbar-brand {
+        font-weight: 600;
+    }
+}

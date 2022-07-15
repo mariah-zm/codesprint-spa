@@ -1,0 +1,42 @@
+<header>
+    <nav class="navbar fixed-top navbar-expand-md navbar-light bg-white mb-3 border-bottom border-2" [@navbarScroll]="isScrolled" (scroll)="onWindowScroll()">
+        <div class="container">
+            <a class="navbar-brand text-primary" routerLink="/">
+                <img class="img-responsive me-1" src="assets/images/logo.png" alt="Inquizit Logo">
+                Inquizit
+            </a>
+            <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">
+                &#9776;
+            </button>
+            <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-auto align-items-lg-center text-center">
+                    <li class="nav-item">
+                        <a class="nav-link me-md-2" [routerLink]="">Explore Quizzes</a>
+                    </li>
+                    <ng-container *ngIf="!isSignedIn">
+                        <li class="nav-item">
+                            <a class="btn btn-outline-custom d-block d-lg-inline-block me-md-2 my-1 my-md-0">Sign up</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="btn btn-custom d-block d-lg-inline-block btn-navbar my-1 my-md-0"
+                                [routerLink]="'/login'">
+                                Log in</a>
+                        </li>
+                    </ng-container>
+                    <ng-container *ngIf="isSignedIn">
+                        <li class="nav-item">
+                            <a class="nav-link me-2 mb-1 mb-md-0" [routerLink]="">My Account</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link me-2 mb-1 mb-md-0" (click)="onLogout()">Log Out</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="btn btn-custom-colour d-block d-lg-inline-block btn-navbar my-1 my-md-0"
+                                [routerLink]="'/create-quiz'">Create Quiz</a>
+                        </li>
+                    </ng-container>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>

@@ -1,0 +1,9 @@
+@use '../abstracts' as a;
+
+.circle-icon { 
+    display: inline-block;
+    border-radius: 60px;
+    box-shadow: 0 0 3px a.$colour-dark;
+    padding: 0.7em 0.8em;
+    background-color: a.$colour-light;
+}

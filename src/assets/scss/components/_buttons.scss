@@ -1,0 +1,21 @@
+@use '../abstracts' as c;
+
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+
+.btn-custom {
+    @include button-variant($background: c.$colour-dark, $border:c.$colour-dark, $hover-background: c.$colour-sunglow, $hover-border: c.$colour-sunglow);
+}
+
+.btn-outline-custom {
+    @include button-outline-variant(c.$colour-dark, c.$colour-sunglow, c.$colour-light, c.$colour-sunglow);
+}
+
+.btn-custom-colour {
+    @include button-variant($background: c.$colour-sunglow, $border:c.$colour-sunglow, $hover-background: c.$colour-sunglow, $hover-border: c.$colour-dark);
+}
+
+.btn:focus, .btn:active {
+    box-shadow: none;
+}
