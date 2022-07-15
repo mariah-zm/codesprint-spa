@@ -20,6 +20,12 @@ const routes: Routes = [
         path: 'explore',
         loadChildren: () => import('./modules/explore/explore.module').then(e => e.ExploreModule)
     },
+
+    {
+        path: 'answer-quiz',
+        canActivate: [AuthGuard],
+        loadChildren: () => import('./modules/answer-quiz/answer-quiz.module').then(e => e.AnswerQuizModule)
+    },
     {
         path: 'not-found',
         loadChildren: () => import('./modules/not-found/not-found.module').then(e => e.NotFoundModule)
