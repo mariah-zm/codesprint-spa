@@ -1,190 +1,138 @@
-<form class="py-5" [formGroup]="quesForm" (ngSubmit)="onSave()">
-    <h1 class="text-center mb-4">Add a Question</h1>
-    <div class="row my-4">
-        <div class="col">
-            <label for="questionId" class="form-label">Question<span class="text-primary">*</span></label>
-            <input class="form-control" id="questionId" formControlName="question"
-                [ngClass]="{ 'is-invalid': formSubmitted && f['question'].errors }">
-            <div *ngIf="formSubmitted && f['question'].errors" class="invalid-feedback">
-                <ng-container *ngIf="f['question'].errors['required']">Field is required</ng-container>
-                <ng-container *ngIf="f['question'].errors['maxLength']">Question must not exceed 250 characters
-                </ng-container>
+<app-create-quiz>
+    <form class="py-5" [formGroup]="quesForm" (ngSubmit)="onSave()">
+        <h1 class="text-center mb-4">Add a Question</h1>
+        <div class="row my-4">
+            <div class="col">
+                <label for="questionId" class="form-label">Question<span class="text-primary">*</span></label>
+                <input class="form-control" id="questionId" formControlName="question"
+                    [ngClass]="{ 'is-invalid': formSubmitted && f['question'].errors }">
+                <div *ngIf="formSubmitted && f['question'].errors" class="invalid-feedback">
+                    <ng-container *ngIf="f['question'].errors['required']">Field is required</ng-container>
+                    <ng-container *ngIf="f['question'].errors['maxLength']">Question must not exceed 250 characters
+                    </ng-container>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="row my-4">
-        <div class="col-md-4">
-            <div class="flex mb-3">
-                Select question type:
-            </div>
-            <div class="row d-flex flex">
-                <div class="col-sm-3 col-md-12 form-check me-4">
-                    <input class="form-check-input" type="radio" name="questionType" id="singleChoice"
-                        [checked]="questionType === 1" (change)="onChangeType(1)">
-                    <label class="form-check-label" for="singleChoice">
-                        Single Choice
-                    </label>
-                </div>
-                <div class="col-sm-3 col-md-12 form-check me-4">
-                    <input class="form-check-input" type="radio" name="questionType" id="multipleChoice"
-                        [checked]="questionType === 2" (change)="onChangeType(2)">
-                    <label class="form-check-label" for="multipleChoice">
-                        Multiple Choice
-                    </label>
-                </div>
-                <div class="col-sm-3 col-md-12 form-check">
-                    <input class="form-check-input" type="radio" name="questionType" id="trueFalse"
-                        [checked]="questionType === 3" (change)="onChangeType(3)">
-                    <label class="form-check-label" for="trueFalse">
-                        True or False
-                    </label>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-8 my-sm-4 my-md-0">
-            <div *ngIf="questionType === 1" [formGroup]="answersForm">
+        <div class="row my-4">
+            <div class="col-md-4">
                 <div class="flex mb-3">
-                    Type in answers and select the correct one:
+                    Select question type:
                 </div>
-
-                <ng-container *ngFor="let answer of answers.controls; let idx = index;">
-                    <div class="row">
-                        <div class="form-check my-1">
-                            <input class="form-check-input mt-2" type="radio" name="answers" id="answer{{idx + 1}}"
-                                [checked]="idx == 0">
-                            <label class="form-check-label" for="answer{{idx + 1}}">
-                                <div class="flex d-flex align-items-center">
-                                    <input class="form-control" id="answer{{idx + 1}}"
-                                        placeholder="Answer {{idx + 1}}...">
-
-                                    <label for="score{{idx + 1}}" class="form-labe px-4">Score:</label>
-                                    <input class="form-control" id="score{{idx + 1}}" placeholder="0">
-                                </div>
-                            </label>
-                        </div>
+                <div class="row d-flex flex">
+                    <div class="col-sm-3 col-md-12 form-check me-4">
+                        <input class="form-check-input" type="radio" name="questionType" id="singleChoice"
+                            [checked]="questionType === 1" (change)="onChangeType(1)">
+                        <label class="form-check-label" for="singleChoice">
+                            Single Choice
+                        </label>
                     </div>
-                </ng-container>
-                <div class="row my-2">
-                    <div>
-                        <button type="button" class="btn btn-link text-neutral-dark" (click)="onAddAnswer()">
-                            Add another answer.
-                        </button>
+                    <div class="col-sm-3 col-md-12 form-check me-4">
+                        <input class="form-check-input" type="radio" name="questionType" id="multipleChoice"
+                            [checked]="questionType === 2" (change)="onChangeType(2)">
+                        <label class="form-check-label" for="multipleChoice">
+                            Multiple Choice
+                        </label>
+                    </div>
+                    <div class="col-sm-3 col-md-12 form-check">
+                        <input class="form-check-input" type="radio" name="questionType" id="trueFalse"
+                            [checked]="questionType === 3" (change)="onChangeType(3)">
+                        <label class="form-check-label" for="trueFalse">
+                            True or False
+                        </label>
                     </div>
                 </div>
             </div>
-            <div *ngIf="questionType === 2">
-                <div class="flex mb-3">
-                    Type in answers and select the correct ones:
-                </div>
-                <ng-container *ngFor="let answer of answers.controls; let idx = index;">
-                    <div class="row">
-                        <div class="form-check my-1">
-                            <input class="form-check-input mt-2" type="checkbox" name="answers" id="answer{{idx + 1}}"
-                                [checked]="idx == 0">
-                            <label class="form-check-label" for="answer{{idx + 1}}">
-                                <div class="flex d-flex align-items-center">
-                                    <input class="form-control" id="answer{{idx + 1}}"
-                                        placeholder="Answer {{idx + 1}}...">
-
-                                    <label for="score{{idx + 1}}" class="form-labe px-4">Score:</label>
-                                    <input class="form-control" id="score{{idx + 1}}" placeholder="0">
-                                </div>
-                            </label>
-                        </div>
+            <div class="col-md-8 my-sm-4 my-md-0">
+                <div *ngIf="questionType === 1" [formGroup]="answersForm">
+                    <div class="flex mb-3">
+                        Type in answers and select the correct one:
                     </div>
-                </ng-container>
-                <div class="row my-2">
-                    <div>
-                        <button type="button" class="btn btn-link text-neutral-dark" (click)="onAddAnswer()">
-                            Add another answer.
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div *ngIf="questionType === 3">
-                <div class="flex mb-3">
-                    Select the correct answer:
-                </div>
-                <div class="form-check me-4">
-                    <input class="form-check-input" type="radio" name="trueFalseAns" id="true" checked>
-                    <label class="form-check-label" for="true">
-                        True
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="trueFalseAns" id="false">
-                    <label class="form-check-label" for="false">
-                        False
-                    </label>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <div class="row my-4">
-        <div class="form-text">
-            Fields marked with a <span class="text-primary">*</span> are required.
-        </div>
-    </div>
-
-    <div class="row my-4">
-        <div>
-            <button type="submit" class="btn btn-custom w-100" (click)="onSave()">Save Question</button>
-        </div>
-    </div>
-</form>
-
-<!-- <form [formGroup]="quizForm" (ngSubmit)="onSubmit()">
-    <h1 class="text-center">Add a Question</h1>
-    <div class="my-5">
-        <label for="quizNameId" class="form-label">Quiz Name</label>
-        <input class="form-control" id="quizNameId" formControlName="quizName">
-    </div>
-    <ng-container *ngFor="let question of quizQuestions; let qIdx = index;" class="align-self-start">
-        <div class="card bg-neutral my-5" [ngClass]="{'animated animated-fade-in-up fade-in-up': qIdx != 0}">
-            <h4 class="card-header text-neutral-dark p-3">Question {{qIdx + 1}}</h4>
-            <div class="card-body pt-4 px-5">
-                <div class="row mb-4">
-                    <input class="form-control" id="question{{qIdx + 1}}" formControlName="question"
-                        placeholder="Enter question...">
-                </div>
-                <div class="row my-1">
-                    <span class="col-form-label col-1 pt-0 text-gray"></span>
-                    <div class="col-11">
-                        <span class="form-text text-italic">Select the correct answer.</span>
-                    </div>
-                </div>
-
-                <fieldset class="row mb-3">
-                    <ng-container *ngFor="let answer of question.answers; let aIdx = index;">
+                    <ng-container *ngFor="let answer of answers.controls; let idx = index;">
                         <div class="row">
-                            <span class="col-form-label col-1 pt-0 text-gray"></span>
-                            <div class="col-11">
-                                <div class="form-check my-1">
-                                    <input class="form-check-input mt-2" type="radio" name="q{{qIdx + 1}}Radios"
-                                        id="a{{aIdx + 1}}Radio" [checked]="aIdx == 0">
-                                    <label class="form-check-label" for="gridRadios1">
-                                        <input class="form-control" id="answer{{aIdx + 1}}" formControlName="answer"
-                                            placeholder="Answer {{aIdx + 1}}">
-                                    </label>
-                                </div>
+                            <div class="form-check my-1">
+                                <input class="form-check-input mt-2" type="radio" name="answers" id="answer{{idx + 1}}"
+                                    [checked]="idx == 0">
+                                <label class="form-check-label" for="answer{{idx + 1}}">
+                                    <div class="flex d-flex align-items-center">
+                                        <input class="form-control" id="answer{{idx + 1}}"
+                                            placeholder="Answer {{idx + 1}}...">
+
+                                        <label for="score{{idx + 1}}" class="form-labe px-4">Score:</label>
+                                        <input class="form-control" id="score{{idx + 1}}" placeholder="0">
+                                    </div>
+                                </label>
                             </div>
                         </div>
                     </ng-container>
                     <div class="row my-2">
-                        <span class="col-form-label col-1 pt-0 text-gray"></span>
-                        <div class="col-11 ps-4">
-                            <span class="tool-tip" data-toggle="tooltip" data-placement="bottom"
-                                title="You can only add up to 4 answers.">
-                                <button type="button" class="btn btn-link text-neutral-dark" (click)="addAnswer(qIdx)"
-                                    [disabled]="question.answers.length == 4">Add
-                                    another answer.</button>
-                            </span>
+                        <div>
+                            <button type="button" class="btn btn-link text-neutral-dark" (click)="onAddAnswer()">
+                                Add another answer.
+                            </button>
                         </div>
                     </div>
-                </fieldset>
+                </div>
+                <div *ngIf="questionType === 2">
+                    <div class="flex mb-3">
+                        Type in answers and select the correct ones:
+                    </div>
+                    <ng-container *ngFor="let answer of answers.controls; let idx = index;">
+                        <div class="row">
+                            <div class="form-check my-1">
+                                <input class="form-check-input mt-2" type="checkbox" name="answers"
+                                    id="answer{{idx + 1}}" [checked]="idx == 0">
+                                <label class="form-check-label" for="answer{{idx + 1}}">
+                                    <div class="flex d-flex align-items-center">
+                                        <input class="form-control" id="answer{{idx + 1}}"
+                                            placeholder="Answer {{idx + 1}}...">
+
+                                        <label for="score{{idx + 1}}" class="form-labe px-4">Score:</label>
+                                        <input class="form-control" id="score{{idx + 1}}" placeholder="0">
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </ng-container>
+                    <div class="row my-2">
+                        <div>
+                            <button type="button" class="btn btn-link text-neutral-dark" (click)="onAddAnswer()">
+                                Add another answer.
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="questionType === 3">
+                    <div class="flex mb-3">
+                        Select the correct answer:
+                    </div>
+                    <div class="form-check me-4">
+                        <input class="form-check-input" type="radio" name="trueFalseAns" id="true" checked>
+                        <label class="form-check-label" for="true">
+                            True
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="trueFalseAns" id="false">
+                        <label class="form-check-label" for="false">
+                            False
+                        </label>
+                    </div>
+                </div>
             </div>
         </div>
-    </ng-container>
-</form> -->
+
+        <div class="row my-4">
+            <div class="form-text">
+                Fields marked with a <span class="text-primary">*</span> are required.
+            </div>
+        </div>
+
+        <div class="row my-4">
+            <div>
+                <button type="submit" class="btn btn-custom w-100" (click)="onSave()">Save Question</button>
+            </div>
+        </div>
+    </form>
+</app-create-quiz>

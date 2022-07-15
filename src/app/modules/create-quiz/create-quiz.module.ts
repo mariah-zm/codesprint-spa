@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { QuizInfoComponent } from './quiz-info/quiz-info.component';
 import { QuizQuestionsComponent } from './quiz-questions/quiz-questions.component';
+import { BreakdownComponent } from './breakdown/breakdown.component';
 
 
 
@@ -13,7 +14,8 @@ import { QuizQuestionsComponent } from './quiz-questions/quiz-questions.componen
   declarations: [
     CreateQuizComponent,
     QuizInfoComponent,
-    QuizQuestionsComponent
+    QuizQuestionsComponent,
+    BreakdownComponent
   ],
   imports: [
     SharedModule,
