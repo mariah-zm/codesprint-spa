@@ -15,17 +15,6 @@
     }
 }
 
-.shadow-hover {
-    transition: a.$transition;
-    box-shadow: none;
-    cursor: pointer;
-
-    &:hover {
-        box-shadow: v.$box-shadow;
-        opacity: 1;
-    }
-}
-
 /* Animation */
 
 @keyframes fade-in-up {
@@ -38,8 +27,6 @@
         opacity: 1
     }
 }
-
-
 
 .animated {
     animation-duration: 1s;

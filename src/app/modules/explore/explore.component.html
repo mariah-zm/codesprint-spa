@@ -1,8 +1,22 @@
-<app-main-layout [isCentered]="true">
+<app-main-layout [isCentered]="false">
     <div class="container py-4">
         <div class="row mb-4">
-            <div class="col-md-8 offset-md-2">
+            <div class="col-md-10 offset-md-1">
                 <h1 class="text-center">Explore Quizzes</h1>
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-2 my-5">
+                    <ng-container *ngFor="let quiz of quizzes">
+                        <div class="p-2">
+                            <div class="card shadow-hover p-1 bg-neutral-light">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title mb-3">{{quiz.name}}</h5>
+                                    <p class="card-text">{{quiz.description}}</p>
+                                    <p><small>{{quiz.amountQuestions}} Questions</small></p>
+                                    <button class="btn btn-custom">Start Quiz</button>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
             </div>
         </div>
     </div>

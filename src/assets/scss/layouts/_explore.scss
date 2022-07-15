@@ -1,0 +1,14 @@
+@use '../abstracts/colours' as c;
+@use '../abstracts/variables' as v;
+@use '../vendors/bootstrap' as b;
+
+.shadow-hover {
+    transition: v.$transition;
+    box-shadow: none;
+    cursor: pointer;
+
+    &:hover {
+        box-shadow: b.$box-shadow;
+        opacity: 1;
+    }
+}
