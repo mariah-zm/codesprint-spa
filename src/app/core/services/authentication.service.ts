@@ -22,14 +22,6 @@ export class AuthenticationService extends BaseService {
     super();
   }
 
-  register(/*credentials: Credentials*/): void {
-
-  }
-
-  login(/*credentials: Credentials*/): void {
-
-  }
-
   logout(): Observable<void> {
     return this.httpClient.post<void>(`${environment.codeSprintApiUrl}/auth/logout`, {},
       { withCredentials: true, headers: { correlation_id: uuidv4() } })
@@ -48,14 +40,6 @@ export class AuthenticationService extends BaseService {
         this.document.location.href = `${environment.codeSprintApiUrl}/auth/login-google`;
         break;
     }
-  }
-
-  setUserAsNotAuthenticated(): void {
-    this.isUserAuthenticatedSubject.next(false);
-  }
-
-  setUserAsAuthenticated(): void {
-    this.isUserAuthenticatedSubject.next(true);
   }
 
   getUserAuthenticationStatus(): Observable<boolean> {

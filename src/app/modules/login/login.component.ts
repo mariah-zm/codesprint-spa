@@ -46,9 +46,6 @@ export class LoginComponent implements OnInit {
 
     this.isLoading = true;
 
-    this.authService.login();
-    this.router.navigate(['']);
-
     this.isLoading = false;
   }
 

@@ -3,9 +3,9 @@ export class QuizResult {
     msg!: string;
     score!: number;
 
-    constructor() {
-        this.passed = false;
-        this.msg = "Oh no! You failed."
-        this.score = 10;
+    constructor(passed: boolean, msg: string, score: number) {
+        this.passed = passed;
+        this.msg = msg;
+        this.score = score;
     }
 }
