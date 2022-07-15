@@ -4,12 +4,16 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { CreateQuizRoutingModule } from "./create-quiz-routing.module";
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { QuizInfoComponent } from './quiz-info/quiz-info.component';
+import { QuizQuestionsComponent } from './quiz-questions/quiz-questions.component';
 
 
 
 @NgModule({
   declarations: [
-    CreateQuizComponent
+    CreateQuizComponent,
+    QuizInfoComponent,
+    QuizQuestionsComponent
   ],
   imports: [
     SharedModule,

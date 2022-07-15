@@ -6,4 +6,8 @@ export class Quiz {
     showCorrect!: boolean;
     msgFail!: boolean;
     msgSuccess!: boolean;
+
+    constructor(init?: Partial<Quiz>) {
+        Object.assign(this, init);
+    }
 }

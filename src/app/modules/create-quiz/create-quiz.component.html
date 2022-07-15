@@ -2,64 +2,7 @@
     <div class="container">
         <div class="row mb-5">
             <div class="col-md-8 offset-md-2">
-                <form [formGroup]="quizForm" (ngSubmit)="onSubmit()">
-                    <h1 class="text-center">Create a New Quiz</h1>
-                    <div class="my-5">
-                        <!-- <label for="quizNameId" class="form-label"></label> -->
-                        <input class="form-control" id="quizNameId" formControlName="quizName"
-                            placeholder="Enter quiz name...">
-                    </div>
-                    <ng-container *ngFor="let question of quizQuestions; let qIdx = index;" class="align-self-start">
-                        <div class="card bg-neutral my-5"
-                            [ngClass]="{'animated animated-fade-in-up fade-in-up': qIdx != 0}">
-                            <h4 class="card-header text-neutral-dark p-3">Question {{qIdx + 1}}</h4>
-                            <div class="card-body pt-4 px-5">
-                                <div class="row mb-4">
-                                    <input class="form-control" id="question{{qIdx + 1}}" formControlName="question"
-                                        placeholder="Enter question...">
-                                </div>
-                                <div class="row my-1">
-                                    <span class="col-form-label col-1 pt-0 text-gray"></span>
-                                    <div class="col-11">
-                                        <span class="form-text text-italic">Select the correct answer.</span>
-                                    </div>
-                                </div>
-
-                                <fieldset class="row mb-3">
-                                    <ng-container *ngFor="let answer of question.answers; let aIdx = index;">
-                                        <div class="row">
-                                            <span class="col-form-label col-1 pt-0 text-gray"></span>
-                                            <div class="col-11">
-                                                <div class="form-check my-1">
-                                                    <input class="form-check-input mt-2" type="radio"
-                                                        name="q{{qIdx + 1}}Radios" id="a{{aIdx + 1}}Radio"
-                                                        [checked]="aIdx == 0">
-                                                    <label class="form-check-label" for="gridRadios1">
-                                                        <input class="form-control" id="answer{{aIdx + 1}}"
-                                                            formControlName="answer" placeholder="Answer {{aIdx + 1}}">
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </ng-container>
-                                    <div class="row my-2">
-                                        <span class="col-form-label col-1 pt-0 text-gray"></span>
-                                        <div class="col-11 ps-4">
-                                            <span class="tool-tip" data-toggle="tooltip" data-placement="bottom"
-                                                title="You can only add up to 4 answers.">
-                                                <button type="button" class="btn btn-link text-neutral-dark"
-                                                    (click)="addAnswer(qIdx)"
-                                                    [disabled]="question.answers.length == 4">Add
-                                                    another answer.</button>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </fieldset>
-                            </div>
-                        </div>
-                    </ng-container>
-                </form>
-                <button type="submit" class="btn btn-custom w-100" (click)="addQuestion()">Add Question</button>
+                <app-quiz-info></app-quiz-info>
             </div>
         </div>
     </div>

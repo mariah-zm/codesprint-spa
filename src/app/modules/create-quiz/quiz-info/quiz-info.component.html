@@ -1,0 +1,81 @@
+<form class="py-5" [formGroup]="quizInfoForm" (ngSubmit)="onSave()">
+    <h1 class="text-center mb-4">Create a New Quiz</h1>
+    <div class="row my-3">
+        <div class="col">
+            <label for="quizNameId" class="form-label">Quiz Name<span class="text-primary">*</span></label>
+            <input class="form-control" id="quizNameId" formControlName="quizName"
+                [ngClass]="{ 'is-invalid': infoFormSubmitted && f['quizName'].errors }">
+            <div *ngIf="infoFormSubmitted && f['quizName'].errors" class="invalid-feedback">
+                <ng-container *ngIf="f['quizName'].errors['required']">Field is required</ng-container>
+            </div>
+        </div>
+        <div class="col">
+            <label for="quizSlugId" class="form-label">Slug<span class="text-primary">*</span></label>
+            <input class="form-control" id="quizSlugId" formControlName="quizSlug"
+                [ngClass]="{ 'is-invalid': infoFormSubmitted && f['quizSlug'].errors }">
+            <div *ngIf="infoFormSubmitted && f['quizSlug'].errors" class="invalid-feedback">
+                <ng-container *ngIf="f['quizSlug'].errors['required']">Field is required</ng-container>
+            </div>
+        </div>
+    </div>
+    <div class="row my-3">
+        <div class="col">
+            <label for="quizDescriptionId" class="form-label">Description</label>
+            <input class="form-control" id="quizDescriptionId" formControlName="quizDescription"
+            [ngClass]="{ 'is-invalid': infoFormSubmitted && f['quizDescription'].errors }">
+            <div *ngIf="infoFormSubmitted && f['quizDescription'].errors" class="invalid-feedback">
+                <ng-container *ngIf="f['quizDescription'].errors['maxLength']">Description must not exceed 250 characters</ng-container>
+            </div>
+        </div>
+    </div>
+    <div class="row my-3">
+        <div class="col">
+            <label for="quizPassingScoreId" class="form-label">Passing Score<span class="text-primary">*</span></label>
+            <input class="form-control" id="quizPassingScoreId" formControlName="quizPassingScore"
+                [ngClass]="{ 'is-invalid': infoFormSubmitted && f['quizPassingScore'].errors }">
+            <div *ngIf="infoFormSubmitted && f['quizPassingScore'].errors" class="invalid-feedback">
+                <ng-container *ngIf="f['quizPassingScore'].errors['required']">Field is required</ng-container>
+                <ng-container *ngIf="f['quizPassingScore'].errors['pattern']">Passing Score must be a postive numerical
+                    value</ng-container>
+            </div>
+        </div>
+        <div class="col">
+            <label for="quizShowCorrectId" class="form-check-label me-3">Show Correct Answer?</label>
+            <input class="form-check-input" type="checkbox" id="quizShowCorrectId" [ngModel]="false"
+                formControlName="quizShowCorrect">
+        </div>
+    </div>
+    <div class="row my-3">
+        <div class="col">
+            <label for="quizMsgSId" class="form-label">Message on Success<span class="text-primary">*</span></label>
+            <input class="form-control" id="quizMsgSId" formControlName="quizMsgS"
+            [ngClass]="{ 'is-invalid': infoFormSubmitted && f['quizMsgS'].errors }">
+            <div *ngIf="infoFormSubmitted && f['quizMsgS'].errors" class="invalid-feedback">
+                <ng-container *ngIf="f['quizMsgS'].errors['required']">Field is required</ng-container>
+            </div>
+        </div>
+    </div>
+    <div class="row my-3">
+        <div class="col">
+            <label for="quizMsgFId" class="form-label">Message on Failure<span class="text-primary">*</span></label>
+            <input class="form-control" id="quizMsgFId" formControlName="quizMsgF"
+            [ngClass]="{ 'is-invalid': infoFormSubmitted && f['quizMsgF'].errors }">
+            <div *ngIf="infoFormSubmitted && f['quizMsgF'].errors" class="invalid-feedback">
+                <ng-container *ngIf="f['quizMsgF'].errors['required']">Field is required</ng-container>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row my-4">
+        <div class="form-text">
+            Fields marked with a <span class="text-primary">*</span> are required.
+        </div>
+    </div>
+
+    <div class="row my-4">
+        <div>
+            <button type="submit" class="btn btn-custom w-100" (click)="onSave()">Save Quiz Information</button>
+        </div>
+    </div>
+</form>
