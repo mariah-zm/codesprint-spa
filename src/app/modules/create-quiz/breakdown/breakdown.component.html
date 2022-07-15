@@ -1,3 +1,94 @@
 <app-create-quiz>
-    
+    <div class="container py-5">
+        <div class="row text-center mb-4">
+            <h1>Quiz Breakdown</h1>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h4 class="mt-2">Quiz Details</h4>
+            </div>
+            <div class="card-body">
+                <div class="row py-2">
+                    <div class="col-3">
+                        <strong>Name:</strong>
+                    </div>
+                    <div class="col-9">
+                        Quiz Title
+                    </div>
+                </div>
+                <div class="row py-2">
+                    <div class="col-3">
+                        <strong>Slug:</strong>
+                    </div>
+                    <div class="col-9">
+                        Quiz Slug
+                    </div>
+                </div>
+                <div class="row py-2">
+                    <div class="col-3">
+                        <strong>Description:</strong>
+                    </div>
+                    <div class="col-9">
+                        This is a description
+                    </div>
+                </div>
+                <div class="row py-2">
+                    <div class="col-3">
+                        <strong>Passing Score:</strong>
+                    </div>
+                    <div class="col-9">
+                        10
+                    </div>
+                </div>
+                <div class="row py-2">
+                    <div class="col-3">
+                        <strong>Show Correct?</strong>
+                    </div>
+                    <div class="col-9">
+                        Yes
+                    </div>
+                </div>
+                <div class="row py-2">
+                    <div class="col-3">
+                        <strong>Message on Success</strong>
+                    </div>
+                    <div class="col-9">
+                        Hooray!
+                    </div>
+                </div>
+                <div class="row py-2">
+                    <div class="col-3">
+                        <strong>Message on Failure</strong>
+                    </div>
+                    <div class="col-9">
+                        Boo!
+                    </div>
+                </div>
+                <div class="pt-4 pb-2">
+                    <button class="btn btn-primary">Edit</button>
+                    <!-- TODO maybe edit quiz -->
+                </div>
+
+            </div>
+        </div>
+
+        <div class="py-3"></div>
+
+        <div class="card">
+            <div class="card-header">
+                <h4 class="mt-2">Quiz Questions</h4>
+            </div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Question 1</li>
+                    <li class="list-group-item">Question 2</li>
+                    <li class="list-group-item">Question 3</li>
+                  </ul>
+                <div class="pt-4 pb-2">
+                    <button class="btn btn-primary" [routerLink]="'/create-quiz/new-question'">Add a New Question</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </app-create-quiz>
