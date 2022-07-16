@@ -86,4 +86,12 @@ export class AuthenticationService extends BaseService {
         catchError(this.handleError)
       );
   }
+
+  getRole(): RoleType {
+    return this.userSubject.getValue().role;
+  }
+
+  getEmail(): string {
+    return this.userSubject.getValue().email;
+  }
 }
