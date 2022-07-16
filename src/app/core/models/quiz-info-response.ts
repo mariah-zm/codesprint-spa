@@ -1,12 +1,12 @@
 export class QuizInfoResponse {
-    id!: number;
     name!: string;
+    slug!: string;
     description!: string;
     amountQuestions!: number;
 
-    constructor(id: number, name: string, desc: string, numQues: number) {
-        this.id = id;
+    constructor(name: string, slug: string, desc: string, numQues: number) {
         this.name = name;
+        this.slug = slug;
         this.description = desc;
         this.amountQuestions = numQues;
     }

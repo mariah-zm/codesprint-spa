@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Quiz } from 'src/app/core/models/quiz';
 import { QuizCreationService } from 'src/app/core/services/quiz-creation.service';
@@ -7,7 +7,7 @@ import { QuizCreationService } from 'src/app/core/services/quiz-creation.service
   selector: 'app-breakdown',
   templateUrl: './breakdown.component.html'
 })
-export class BreakdownComponent implements OnInit {
+export class BreakdownComponent implements OnDestroy {
   quiz!: Quiz;
 
   isSaved = false;
@@ -20,12 +20,8 @@ export class BreakdownComponent implements OnInit {
     private quizService: QuizCreationService
   ) {
     this.quizSubscription = this.quizService.quiz.subscribe(quiz => this.quiz = quiz);
-    console.log(this.quiz);
   }
-
-  ngOnInit(): void {
-  }
-
+  
   onSubmit(): void {
     this.submitClicked = true;
     
@@ -34,9 +30,11 @@ export class BreakdownComponent implements OnInit {
     if (this.isSaved)
       return; // not saving more than once
 
-    // To send quiz to BE
-    
-    this.isSaved = true;
+    // sending quiz to BE
+    this.quizSubscription = this.quizService.submitQuiz()
+    .subscribe(_ =>
+      this.isSaved = true
+    );   
   }
 
   ngOnDestroy(): void {

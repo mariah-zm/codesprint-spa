@@ -12,8 +12,8 @@ export class ExploreComponent implements OnInit {
     // To replace this by retrieving quizzes from BE
 
     const quizResponse = new QuizInfoResponse(
-      1,
       "Quiz Title",
+      "quiz",
       "This is an example of a quiz title in which the teacher can explain what the quiz is about.",
       10
     );

@@ -10,7 +10,7 @@ import { NavbarScrollAnimation } from 'src/app/shared/animations';
   templateUrl: './navbar.component.html',
   animations: [NavbarScrollAnimation]
 })
-export class NavbarComponent implements OnInit, OnDestroy {
+export class NavbarComponent implements OnDestroy {
   public isMenuCollapsed: boolean = true;
   public isSignedIn: boolean = false;
   public role!: RoleType;
@@ -25,10 +25,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
     private router: Router) {
     this.authSubscription = this.authService.isUserAuthenticated.subscribe(isAuthenticated => this.isSignedIn = isAuthenticated);
     this.roleSubscription = this.authService.userRole.subscribe(role => this.role = role);
-  }
-
-  ngOnInit(): void {
-    
   }
 
   onLogout(): void {

@@ -5,17 +5,17 @@
             <div class="col">
                 <label for="quizNameId" class="form-label">Quiz Name<span class="text-primary">*</span></label>
                 <input class="form-control" id="quizNameId" formControlName="name"
-                    [ngClass]="{ 'is-invalid': infoFormSubmitted && f['quizName'].errors }">
-                <div *ngIf="infoFormSubmitted && f['quizName'].errors" class="invalid-feedback">
-                    <ng-container *ngIf="f['quizName'].errors['required']">Field is required</ng-container>
+                    [ngClass]="{ 'is-invalid': infoFormSubmitted && f['name'].errors }">
+                <div *ngIf="infoFormSubmitted && f['name'].errors" class="invalid-feedback">
+                    <ng-container *ngIf="f['name'].errors['required']">Field is required</ng-container>
                 </div>
             </div>
             <div class="col">
                 <label for="quizSlugId" class="form-label">Slug<span class="text-primary">*</span></label>
                 <input class="form-control" id="quizSlugId" formControlName="slug"
-                    [ngClass]="{ 'is-invalid': infoFormSubmitted && f['quizSlug'].errors }">
-                <div *ngIf="infoFormSubmitted && f['quizSlug'].errors" class="invalid-feedback">
-                    <ng-container *ngIf="f['quizSlug'].errors['required']">Field is required</ng-container>
+                    [ngClass]="{ 'is-invalid': infoFormSubmitted && f['slug'].errors }">
+                <div *ngIf="infoFormSubmitted && f['slug'].errors" class="invalid-feedback">
+                    <ng-container *ngIf="f['slug'].errors['required']">Field is required</ng-container>
                 </div>
             </div>
         </div>
@@ -23,9 +23,9 @@
             <div class="col">
                 <label for="quizDescriptionId" class="form-label">Description</label>
                 <input class="form-control" id="quizDescriptionId" formControlName="description"
-                    [ngClass]="{ 'is-invalid': infoFormSubmitted && f['quizDescription'].errors }">
-                <div *ngIf="infoFormSubmitted && f['quizDescription'].errors" class="invalid-feedback">
-                    <ng-container *ngIf="f['quizDescription'].errors['maxLength']">Description must not exceed 250
+                    [ngClass]="{ 'is-invalid': infoFormSubmitted && f['description'].errors }">
+                <div *ngIf="infoFormSubmitted && f['description'].errors" class="invalid-feedback">
+                    <ng-container *ngIf="f['description'].errors['maxLength']">Description must not exceed 250
                         characters</ng-container>
                 </div>
             </div>
@@ -35,10 +35,10 @@
                 <label for="quizPassingScoreId" class="form-label">Passing Score<span
                         class="text-primary">*</span></label>
                 <input class="form-control" id="quizPassingScoreId" formControlName="passingScore"
-                    [ngClass]="{ 'is-invalid': infoFormSubmitted && f['quizPassingScore'].errors }">
-                <div *ngIf="infoFormSubmitted && f['quizPassingScore'].errors" class="invalid-feedback">
-                    <ng-container *ngIf="f['quizPassingScore'].errors['required']">Field is required</ng-container>
-                    <ng-container *ngIf="f['quizPassingScore'].errors['pattern']">Passing Score must be a postive
+                    [ngClass]="{ 'is-invalid': infoFormSubmitted && f['passingScore'].errors }">
+                <div *ngIf="infoFormSubmitted && f['passingScore'].errors" class="invalid-feedback">
+                    <ng-container *ngIf="f['passingScore'].errors['required']">Field is required</ng-container>
+                    <ng-container *ngIf="f['passingScore'].errors['pattern']">Passing Score must be a postive
                         numerical
                         value</ng-container>
                 </div>
@@ -53,9 +53,9 @@
             <div class="col">
                 <label for="quizMsgSId" class="form-label">Message on Success<span class="text-primary">*</span></label>
                 <input class="form-control" id="quizMsgSId" formControlName="msgSuccess"
-                    [ngClass]="{ 'is-invalid': infoFormSubmitted && f['quizMsgS'].errors }">
-                <div *ngIf="infoFormSubmitted && f['quizMsgS'].errors" class="invalid-feedback">
-                    <ng-container *ngIf="f['quizMsgS'].errors['required']">Field is required</ng-container>
+                    [ngClass]="{ 'is-invalid': infoFormSubmitted && f['msgSuccess'].errors }">
+                <div *ngIf="infoFormSubmitted && f['msgSuccess'].errors" class="invalid-feedback">
+                    <ng-container *ngIf="f['msgSuccess'].errors['required']">Field is required</ng-container>
                 </div>
             </div>
         </div>
@@ -63,9 +63,9 @@
             <div class="col">
                 <label for="quizMsgFId" class="form-label">Message on Failure<span class="text-primary">*</span></label>
                 <input class="form-control" id="quizMsgFId" formControlName="msgFailure"
-                    [ngClass]="{ 'is-invalid': infoFormSubmitted && f['quizMsgF'].errors }">
-                <div *ngIf="infoFormSubmitted && f['quizMsgF'].errors" class="invalid-feedback">
-                    <ng-container *ngIf="f['quizMsgF'].errors['required']">Field is required</ng-container>
+                    [ngClass]="{ 'is-invalid': infoFormSubmitted && f['msgFailure'].errors }">
+                <div *ngIf="infoFormSubmitted && f['msgFailure'].errors" class="invalid-feedback">
+                    <ng-container *ngIf="f['msgFailure'].errors['required']">Field is required</ng-container>
                 </div>
             </div>
         </div>
@@ -79,7 +79,7 @@
 
         <div class="row my-4">
             <div>
-                <button type="submit" class="btn btn-custom w-100" (click)="onSave()">Save Quiz Information</button>
+                <button type="button" class="btn btn-custom w-100" (click)="onSave()">Save Quiz Information</button>
             </div>
         </div>
     </form>

@@ -1,6 +1,9 @@
+import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, Observable } from "rxjs";
+import { BehaviorSubject, catchError, Observable, tap } from "rxjs";
+import { environment } from "src/environments/environment";
 import { Quiz } from "../models/quiz";
+import { v4 as uuidv4 } from 'uuid';
 import { BaseService } from "./base.service";
 
 @Injectable({
@@ -11,7 +14,7 @@ export class QuizCreationService extends BaseService {
     private quizSubject: BehaviorSubject<Quiz> = new BehaviorSubject<Quiz>(this.initResult);
     quiz: Observable<Quiz> = this.quizSubject.asObservable();
 
-    constructor() {
+    constructor(private httpClient: HttpClient) {
         super();
     }
 
@@ -21,5 +24,16 @@ export class QuizCreationService extends BaseService {
 
     getQuiz(): Quiz {
         return this.quizSubject.getValue();
+    }
+
+    submitQuiz(): Observable<void> {
+        const quiz = this.getQuiz()
+
+        return this.httpClient
+            .post<void>(`${environment.inquizitApiUrl}/quiz/new`, { info: quiz.info, questions: quiz.questions }, 
+            { withCredentials: true, headers: { correlation_id: uuidv4() }, responseType: 'text' as 'json' })
+            .pipe(
+                catchError(this.handleError)
+            );
     }
 }  

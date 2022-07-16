@@ -27,7 +27,7 @@ export class AuthenticationService extends BaseService {
   }
 
   logout(): Observable<void> {
-    return this.httpClient.post<void>(`${environment.codeSprintApiUrl}/auth/logout`, {},
+    return this.httpClient.post<void>(`${environment.inquizitApiUrl}/auth/logout`, {},
       { withCredentials: true, headers: { correlation_id: uuidv4() } })
       .pipe(
         tap(_ => this.isUserAuthenticatedSubject.next(false)),
@@ -38,10 +38,10 @@ export class AuthenticationService extends BaseService {
   externalLogin(externalProvider: ExternalProvider): void {
     switch (externalProvider) {
       case ExternalProvider.Facebook:
-        this.document.location.href = `${environment.codeSprintApiUrl}/auth/login-facebook`;
+        this.document.location.href = `${environment.inquizitApiUrl}/auth/login-facebook`;
         break;
       case ExternalProvider.Google:
-        this.document.location.href = `${environment.codeSprintApiUrl}/auth/login-google`;
+        this.document.location.href = `${environment.inquizitApiUrl}/auth/login-google`;
         break;
     }
   }
@@ -51,7 +51,7 @@ export class AuthenticationService extends BaseService {
     const transferItem = this.transferState.get<boolean>(transferKey, <any>null);
 
     if (transferItem === null) {
-      return this.httpClient.get<boolean>(`${environment.codeSprintApiUrl}/auth/is-authenticated`,
+      return this.httpClient.get<boolean>(`${environment.inquizitApiUrl}/auth/is-authenticated`,
         { withCredentials: true, headers: { correlation_id: uuidv4() } })
         .pipe(
           tap((isAuthenticated: boolean) => {
@@ -67,7 +67,7 @@ export class AuthenticationService extends BaseService {
   }
 
   getUserRole(): Observable<RoleType> {
-    return this.httpClient.get<RoleType>(`${environment.codeSprintApiUrl}/auth/role`,
+    return this.httpClient.get<RoleType>(`${environment.inquizitApiUrl}/auth/role`,
       { withCredentials: true, headers: { correlation_id: uuidv4() } })
       .pipe(
         tap((roleVal: number) => {
@@ -78,7 +78,7 @@ export class AuthenticationService extends BaseService {
   }
 
   updateUserAuthenticationStatus(): Observable<boolean> {
-    return this.httpClient.get<boolean>(`${environment.codeSprintApiUrl}/auth/is-authenticated`,
+    return this.httpClient.get<boolean>(`${environment.inquizitApiUrl}/auth/is-authenticated`,
       { withCredentials: true, headers: { correlation_id: uuidv4() } })
       .pipe(
         tap((isAuthenticated: boolean) => this.isUserAuthenticatedSubject.next(isAuthenticated)),
