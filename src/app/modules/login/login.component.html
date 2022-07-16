@@ -1,47 +1,29 @@
 <app-main-layout [isCentered]="true">
     <div class="container py-4">
         <div class="row mb-4">
-            <div class="col-md-6 offset-md-3">
-                <form [formGroup]="loginForm" autocomplete="on" (ngSubmit)="onSubmit()">
+            <div class="col-md-4 offset-md-4 text-center">
+                <div class="row py-3">
                     <h1 class="text-center ">Log in</h1>
-                    <ngb-alert class="alert alert-primary" *ngIf="!isAlertClosed && isRedirected" (close)="isAlertClosed = true">
+                    <ngb-alert class="alert alert-primary" *ngIf="!isAlertClosed && isRedirected"
+                        (close)="isAlertClosed = true">
                         You must login to access this page!
                     </ngb-alert>
-                    <div class="my-3">
-                        <label for="emailId" class="form-label">Email address</label>
-                        <input type="email" class="form-control" id="emailId" formControlName="email" aria-describedby="emailHelp"
-                        [ngClass]="{ 'is-invalid': loginFormSubmitted && f['email'].errors }">
-                        <div *ngIf="loginFormSubmitted && f['email'].errors" class="invalid-feedback">
-                            <ng-container *ngIf="f['email'].errors['required']">Email is required</ng-container>
-                            <ng-container *ngIf="f['email'].errors['email']">Email must be a valid email address</ng-container>
-                        </div>
-                        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="passwordId" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="passwordId" formControlName="password"
-                        [ngClass]="{ 'is-invalid': loginFormSubmitted && f['password'].errors }">
-                        <div *ngIf="loginFormSubmitted && f['password'].errors" class="invalid-feedback">
-                            <ng-container *ngIf="f['password'].errors['required']">Password is required</ng-container>
-                        </div>
-                    </div>
-                    <div class="mb-3 form-check d-flex">
-                        <input type="checkbox" class="form-check-input me-2" id="checkId">
-                        <label class="form-check-label" for="checkId">Remember me</label>
-                        <a routerLink="" class="flex-grow-1 text-end text-reset">Forgot
-                            Password?</a>
-                    </div>
-                    <button type="submit" class="btn btn-custom w-100" [disabled]="isLoading">Submit</button>
-                </form>
-                <div class="my-3 my-md-4 my-lg-5">
-                    <hr class="login-division m-0">
-                    <span class="login-division-or text-center fw-bold">OR</span>
                 </div>
-                <div class="text-center">
-                    <i-bs name="facebook" width="2rem" height="2rem" class="circle-icon login-fb hover me-4" (click)="onFacebookLogin()">
-                    </i-bs>
-                    <i-bs name="google" width="2rem" height="2rem" class="circle-icon login-google hover" (click)="onGoogleLogin()">
-                    </i-bs>
+                <div class="row my-3">
+                    <button type="button" class="btn btn-custom button-size-lg signin-btn" (click)="onFacebookLogin()"
+                        [disabled]="isLoading">
+                        <i-bs name="facebook" width="2rem" height="2rem" class="login-fb"></i-bs>
+                        LOGIN WITH FACEBOOK
+                    </button>
+                </div>
+                <div class="row my-3">
+                    <button type="button" class="btn btn-custom button-size-lg signin-btn" (click)="onGoogleLogin()"
+                        [disabled]="isLoading">
+                        <i-bs name="google" width="2rem" height="2rem" class="login-google"></i-bs>
+                        LOGIN WITH GOOGLE
+                    </button>
+                </div>
+                <div class="row my-3">
                     <h6 class="mt-4">Don't have an account? <a routerLink="/register">Join Inquizit.</a></h6>
                 </div>
             </div>
