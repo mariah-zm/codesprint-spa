@@ -12,6 +12,10 @@ const routes: Routes = [
         loadChildren: () => import('./modules/login/login.module').then(l => l.LoginModule)
     },
     {
+        path: 'register',
+        loadChildren: () => import('./modules/register/register.module').then(r => r.RegisterModule)
+    },
+    {
         path: 'create-quiz',
         canActivate: [AuthGuard],
         loadChildren: () => import('./modules/create-quiz/create-quiz.module').then(c => c.CreateQuizModule)

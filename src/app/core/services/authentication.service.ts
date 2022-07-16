@@ -87,11 +87,24 @@ export class AuthenticationService extends BaseService {
       );
   }
 
+  updateRole(role: RoleType): Observable<void> {
+    const email = this.getEmail();
+    return this.httpClient.post<void>(`${environment.inquizitApiUrl}/user/${email}/role?type=${role}`,
+      { withCredentials: true, headers: { correlation_id: uuidv4() } })
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
   getRole(): RoleType {
     return this.userSubject.getValue().role;
   }
 
   getEmail(): string {
     return this.userSubject.getValue().email;
+  }
+
+  getName(): string {
+    return this.userSubject.getValue().name;
   }
 }

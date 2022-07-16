@@ -1,7 +1,5 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
 import { ExternalProvider } from 'src/app/core/models/enums/auth-provider.enum';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
 
