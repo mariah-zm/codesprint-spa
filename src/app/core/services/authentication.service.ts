@@ -8,6 +8,7 @@ import { ExternalProvider } from "../models/enums/auth-provider.enum";
 import { BaseService } from "./base.service";
 import { v4 as uuidv4 } from 'uuid';
 import { RoleType } from "../models/enums/role.enum";
+import { User } from "../models/user";
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +17,8 @@ export class AuthenticationService extends BaseService {
   private isUserAuthenticatedSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   isUserAuthenticated: Observable<boolean> = this.isUserAuthenticatedSubject.asObservable();
 
-  private userRoleSubject: BehaviorSubject<RoleType> = new BehaviorSubject<RoleType>(RoleType.NONE);
-  userRole: Observable<RoleType> = this.userRoleSubject.asObservable();
+  private userSubject: BehaviorSubject<User> = new BehaviorSubject<User>(new User);
+  user: Observable<User> = this.userSubject.asObservable();
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
@@ -66,12 +67,12 @@ export class AuthenticationService extends BaseService {
     }
   }
 
-  getUserRole(): Observable<RoleType> {
-    return this.httpClient.get<RoleType>(`${environment.inquizitApiUrl}/auth/role`,
+  getUser(): Observable<User> {
+    return this.httpClient.get<User>(`${environment.inquizitApiUrl}/user`,
       { withCredentials: true, headers: { correlation_id: uuidv4() } })
       .pipe(
-        tap((roleVal: number) => {
-          this.userRoleSubject.next(roleVal)
+        tap((user: User) => {
+          this.userSubject.next(user)
         }),
         catchError(this.handleError)
       );

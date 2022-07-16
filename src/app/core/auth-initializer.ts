@@ -1,6 +1,7 @@
 import { Observable, of, tap } from "rxjs";
 import { catchError } from "rxjs/operators";
 import { RoleType } from "./models/enums/role.enum";
+import { User } from "./models/user";
 import { AuthenticationService } from "./services/authentication.service"
 
 export function checkIfUserIsAuthenticated(authService: AuthenticationService): () => Observable<boolean> {
@@ -13,12 +14,12 @@ export function checkIfUserIsAuthenticated(authService: AuthenticationService): 
     };
 }
 
-export function checkUserRole(authService: AuthenticationService): () => Observable<RoleType> {
+export function getUser(authService: AuthenticationService): () => Observable<User> {
     return () => {
         return authService
-            .getUserRole()
+            .getUser()
             .pipe(
-                catchError(_ => of(RoleType.NONE))
+                catchError(_ => of(new User))
             );
     };
 }

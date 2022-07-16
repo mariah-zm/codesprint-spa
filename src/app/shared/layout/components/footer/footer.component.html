@@ -39,7 +39,7 @@
                                     <a routerLink="" class="text-reset text-decoration-none">Explore Quizzes</a>
                                 </li>
                                 <li>
-                                    <a [routerLink]="'/create-quiz'" class="text-reset text-decoration-none" *ngIf="isSignedIn">Create a Quiz</a>
+                                    <a [routerLink]="'/create-quiz'" class="text-reset text-decoration-none" *ngIf="isSignedIn && user.role == 2">Create a Quiz</a>
                                 </li>
                                 <li>
                                     <a routerLink="" class="text-reset text-decoration-none">FAQs</a>

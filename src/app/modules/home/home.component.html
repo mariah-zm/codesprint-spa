@@ -7,8 +7,8 @@
                 </div>
                 <div>
                     <ng-container *ngIf="isSignedIn; else welcomeOther">
-                        <h1>Welcome Back!</h1>
-                        <ng-container *ngIf="role === 2; else student"> <!-- 2 is a TEACHER role -->
+                        <h1>Welcome Back {{user.name}}!</h1>
+                        <ng-container *ngIf="user.role === 2; else student"> <!-- 2 is a TEACHER role -->
                             <h5 class="py-3 text-grey">Why don't you go ahead and add a new quiz?</h5>
                             <button class="btn btn-custom" style="width: 200px" [routerLink]="'/create-quiz'">
                                 Add a new quiz
