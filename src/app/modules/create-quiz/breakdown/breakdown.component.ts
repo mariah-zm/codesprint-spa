@@ -13,6 +13,7 @@ export class BreakdownComponent implements OnDestroy {
   isSaved = false;
   isAlertClosed = true;
   submitClicked = false;
+  error = "";
 
   private quizSubscription!: Subscription;
 
@@ -24,17 +25,22 @@ export class BreakdownComponent implements OnDestroy {
   
   onSubmit(): void {
     this.submitClicked = true;
+    this.error = "";
     
-    if (this.quiz.questions.length == 0)
+    if (this.quiz.questions.length == 0) {
+      this.error = "You must add a question first!";
       return;
-    if (this.isSaved)
+    } if (this.isSaved)
       return; // not saving more than once
 
     // sending quiz to BE
     this.quizSubscription = this.quizService.submitQuiz()
-    .subscribe(_ =>
+    .subscribe(_ => 
       this.isSaved = true
-    );   
+    );
+
+    if (!this.isSaved)
+      this.error = "Could not save! An error occured"
   }
 
   ngOnDestroy(): void {

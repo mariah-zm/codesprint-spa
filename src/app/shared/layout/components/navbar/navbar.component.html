@@ -25,11 +25,7 @@
                         </li>
                     </ng-container>
                     <ng-container *ngIf="isSignedIn">
-                        <ng-container *ngIf="user.role == 2"> <!-- 2 is a TEACHER role -->
-                            <li class="nav-item">
-                                <a class="nav-link me-2 mb-1 mb-md-0" [routerLink]="">My Quizzes</a>
-                            </li>
-    
+                        <ng-container *ngIf="user.role == 2"> <!-- 2 is a TEACHER role -->  
                             <li class="nav-item">
                                 <a class="btn btn-custom-colour-green d-block d-lg-inline-block btn-navbar me-md-3 my-1 my-md-0"
                                     [routerLink]="'/create-quiz'">Create Quiz</a>

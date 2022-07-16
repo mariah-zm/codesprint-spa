@@ -35,7 +35,7 @@ export class QuizCreationService extends BaseService {
         const id = this.authService.getEmail();
 
         return this.httpClient
-            .post<void>(`${environment.inquizitApiUrl}/quiz/new/${id}`, { info: quiz.info, questions: quiz.questions },
+            .post<void>(`${environment.inquizitApiUrl}/quiz/new`, { info: quiz.info, questions: quiz.questions },
                 { withCredentials: true, headers: { correlation_id: uuidv4() }, responseType: 'text' as 'json' })
             .pipe(
                 catchError(this.handleError)

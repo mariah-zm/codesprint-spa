@@ -23,13 +23,13 @@ export class QuizInfoComponent implements OnInit {
     private quizService: QuizCreationService
   ) {
     this.quizInfoForm = this.formBuilder.group({
-      name: ['', [Validators.required]],
-      slug: ['', [Validators.required]],
+      name: ['', [Validators.required, Validators.maxLength(50)]],
+      slug: ['', [Validators.required, Validators.pattern("^[a-z]*$"), Validators.maxLength(20)]],
       description: ['', [Validators.maxLength(250)]],
       passingScore: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
       showCorrect: [''],
-      msgSuccess: ['', [Validators.required]],
-      msgFailure: ['', [Validators.required]]
+      msgSuccess: ['', [Validators.required, Validators.maxLength(100)]],
+      msgFailure: ['', [Validators.required, Validators.maxLength(100)]]
     });
   }
 

@@ -11,8 +11,8 @@
                 </div>
             </div>
             <div class="row text-center mb-3">
-                <ngb-alert class="alert alert-primary py-3" *ngIf="submitClicked && !isSaved" (close)="isAlertClosed = true">
-                    You must add questions first!
+                <ngb-alert class="alert alert-primary py-3" *ngIf="submitClicked && !isSaved && error.length > 0" (close)="isAlertClosed = true">
+                    {{error}}
                 </ngb-alert>
                 <ngb-alert class="alert alert-neutral py-3" *ngIf="isSaved" [dismissible]="false">
                     Your quiz has been saved.
@@ -80,11 +80,6 @@
                             {{quiz.info.msgFailure}}
                         </div>
                     </div>
-                    <div class="pt-4 pb-2">
-                        <button class="btn btn-primary">Edit</button>
-                        <!-- TODO maybe edit quiz -->
-                    </div>
-
                 </div>
             </div>
 

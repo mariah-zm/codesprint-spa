@@ -41,12 +41,12 @@ export class QuizQuestionsComponent implements OnInit {
     private quizService: QuizCreationService
   ) {
     this.quesForm = this.formBuilder.group({
-      question: ['', [Validators.required, Validators.maxLength(250)]]
+      question: ['', [Validators.required]]
     });
 
-    this.answersForm.addControl("answer0", new FormControl('', Validators.required));
+    this.answersForm.addControl("answer0", new FormControl('', [Validators.required, Validators.maxLength(70)]));
     this.answersForm.addControl("score0", new FormControl('0', Validators.required));
-    this.answersForm.addControl("answer1", new FormControl('', Validators.required));
+    this.answersForm.addControl("answer1", new FormControl('', [Validators.required, Validators.maxLength(100)]));
     this.answersForm.addControl("score1", new FormControl('0', Validators.required));
   }
 
@@ -64,9 +64,9 @@ export class QuizQuestionsComponent implements OnInit {
         new QuizAnswer("", 0, false)
       ]
 
-      this.answersForm.addControl("answer0", new FormControl('', Validators.required));
+      this.answersForm.addControl("answer0", new FormControl('', [Validators.required, Validators.maxLength(70)]));
       this.answersForm.addControl("score0", new FormControl('0', Validators.required));
-      this.answersForm.addControl("answer1", new FormControl('', Validators.required));
+      this.answersForm.addControl("answer1", new FormControl('', [Validators.required, Validators.maxLength(70)]));
       this.answersForm.addControl("score1", new FormControl('0', Validators.required));
     } else {
       this.answersForm.addControl("score", new FormControl('0', Validators.required));
@@ -93,7 +93,7 @@ export class QuizQuestionsComponent implements OnInit {
 
     this.answers[nextIdx] = new QuizAnswer("", 0, false);
 
-    this.answersForm.addControl("answer" + nextIdx, new FormControl('', Validators.required));
+    this.answersForm.addControl("answer" + nextIdx, new FormControl('', [Validators.required, Validators.maxLength(70)]));
     this.answersForm.addControl("score" + nextIdx, new FormControl('0', Validators.required));
   }
 
@@ -155,7 +155,7 @@ export class QuizQuestionsComponent implements OnInit {
           this.answers[aIdx].correct = true;
         else
           this.answers[aIdx].correct = false;
-        
+
         aIdx++;
       }
     }
