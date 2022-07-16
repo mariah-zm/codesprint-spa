@@ -68,11 +68,13 @@ export class AuthenticationService extends BaseService {
 
   getUserRole(): Observable<RoleType> {
     return this.httpClient.get<RoleType>(`${environment.codeSprintApiUrl}/auth/role`,
-    { withCredentials: true, headers: { correlation_id: uuidv4() } })
-    .pipe(
-      tap((role: RoleType) => this.userRoleSubject.next(role)),
-      catchError(this.handleError)
-    );
+      { withCredentials: true, headers: { correlation_id: uuidv4() } })
+      .pipe(
+        tap((roleVal: number) => {
+          this.userRoleSubject.next(roleVal)
+        }),
+        catchError(this.handleError)
+      );
   }
 
   updateUserAuthenticationStatus(): Observable<boolean> {
