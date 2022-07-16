@@ -1,6 +1,7 @@
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { RoleType } from 'src/app/core/models/enums/role.enum';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
 import { NavbarScrollAnimation } from 'src/app/shared/animations';
 
@@ -12,27 +13,29 @@ import { NavbarScrollAnimation } from 'src/app/shared/animations';
 export class NavbarComponent implements OnInit, OnDestroy {
   public isMenuCollapsed: boolean = true;
   public isSignedIn: boolean = false;
+  public role: RoleType = RoleType.NONE;
+
   isScrolled: string = "noScroll";
-  accountType = "teacher";
 
   private authSubscription!: Subscription;
+  private roleSubscription!: Subscription;
 
   constructor(
     private authService: AuthenticationService,
-    private router: Router)
-  {}
+    private router: Router) { }
 
   ngOnInit(): void {
     this.authSubscription = this.authService.isUserAuthenticated.subscribe(isAuthenticated => this.isSignedIn = isAuthenticated);
+    this.roleSubscription = this.authService.userRole.subscribe(role => this.role = role);
   }
 
   onLogout(): void {
     this.authSubscription = this.authService.logout()
-    .subscribe(_ => 
+      .subscribe(_ =>
         this.router.navigate([''])
-      .then(() => {
-        window.location.reload();
-    }));
+          .then(() => {
+            window.location.reload();
+          }));
   }
 
   @HostListener('window:scroll', [])
@@ -42,6 +45,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.authSubscription?.unsubscribe();
+    this.roleSubscription?.unsubscribe();
   }
 
 }

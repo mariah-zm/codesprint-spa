@@ -7,6 +7,7 @@ import { environment } from "src/environments/environment";
 import { ExternalProvider } from "../models/enums/auth-provider.enum";
 import { BaseService } from "./base.service";
 import { v4 as uuidv4 } from 'uuid';
+import { RoleType } from "../models/enums/role.enum";
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,9 @@ import { v4 as uuidv4 } from 'uuid';
 export class AuthenticationService extends BaseService {
   private isUserAuthenticatedSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   isUserAuthenticated: Observable<boolean> = this.isUserAuthenticatedSubject.asObservable();
+
+  private userRoleSubject: BehaviorSubject<RoleType> = new BehaviorSubject<RoleType>(RoleType.NONE);
+  userRole: Observable<RoleType> = this.userRoleSubject.asObservable();
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
@@ -60,6 +64,15 @@ export class AuthenticationService extends BaseService {
       this.isUserAuthenticatedSubject.next(transferItem);
       return of(transferItem);
     }
+  }
+
+  getUserRole(): Observable<RoleType> {
+    return this.httpClient.get<RoleType>(`${environment.codeSprintApiUrl}/auth/role`,
+    { withCredentials: true, headers: { correlation_id: uuidv4() } })
+    .pipe(
+      tap((role: RoleType) => this.userRoleSubject.next(role)),
+      catchError(this.handleError)
+    );
   }
 
   updateUserAuthenticationStatus(): Observable<boolean> {

@@ -1,7 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { question } from 'ngx-bootstrap-icons';
 import { QuizQuestion } from 'src/app/core/models/quiz-question';
 import { QuizResponse } from 'src/app/core/models/quiz-response';
 import { QuizResult } from 'src/app/core/models/quiz-result';
