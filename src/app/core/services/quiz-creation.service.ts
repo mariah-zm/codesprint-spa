@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, catchError, Observable, tap } from "rxjs";
+import { BehaviorSubject, catchError, Observable } from "rxjs";
 import { environment } from "src/environments/environment";
 import { Quiz } from "../models/quiz";
 import { v4 as uuidv4 } from 'uuid';

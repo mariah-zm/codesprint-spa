@@ -1,34 +1,36 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { QuizInfoResponse } from 'src/app/core/models/quiz-info-response';
+import { QuizResponse } from 'src/app/core/models/quiz-response';
+import { QuizRetrievalService } from 'src/app/core/services/quiz-retrieval.service';
 
 @Component({
   selector: 'app-explore',
   templateUrl: './explore.component.html'
 })
-export class ExploreComponent implements OnInit {
+export class ExploreComponent implements OnInit, OnDestroy {
   quizzes: QuizInfoResponse[] = [];
+  quiz!: QuizResponse;
 
-  constructor() {
-    // To replace this by retrieving quizzes from BE
+  private retrievalSubscription!: Subscription;
 
-    const quizResponse = new QuizInfoResponse(
-      "Quiz Title",
-      "quiz",
-      "This is an example of a quiz title in which the teacher can explain what the quiz is about.",
-      10
-    );
-
-    this.quizzes.push(quizResponse);
-    this.quizzes.push(quizResponse);
-    this.quizzes.push(quizResponse);
-    this.quizzes.push(quizResponse);
-    this.quizzes.push(quizResponse);
-    this.quizzes.push(quizResponse);
-    this.quizzes.push(quizResponse);
-    this.quizzes.push(quizResponse);
+  constructor(
+    private router: Router,
+    private retrievalService: QuizRetrievalService
+  ) {
+    this.retrievalSubscription = this.retrievalService.quiz.subscribe(quiz => this.quiz = quiz);
   }
 
   ngOnInit(): void {
+  }
+
+  onStartQuiz(slug: string): void {
+    this.retrievalSubscription = this.retrievalService.getQuiz(slug).subscribe(_ => this.router.navigate(['/answer-quiz']));
+  }
+
+  ngOnDestroy(): void {
+    this.retrievalSubscription?.unsubscribe();
   }
 
 }

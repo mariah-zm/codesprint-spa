@@ -136,7 +136,7 @@ export class QuizQuestionsComponent implements OnInit {
       this.answers[1].answer = "False";
 
       if (this.correctAnswers.length !== 0) {
-        this.answers[this.correctAnswers[0]].isCorrect = true;
+        this.answers[this.correctAnswers[0]].correct = true;
         this.answers[this.correctAnswers[0]].score = this.answersForm.controls["score"].value;
       }
 
@@ -152,9 +152,9 @@ export class QuizQuestionsComponent implements OnInit {
         this.answers[aIdx].score = this.answersForm.controls[sKey].value;
 
         if (this.correctAnswers.includes(aIdx))
-          this.answers[aIdx].isCorrect = true;
+          this.answers[aIdx].correct = true;
         else
-          this.answers[aIdx].isCorrect = false;
+          this.answers[aIdx].correct = false;
         
         aIdx++;
       }
@@ -166,13 +166,13 @@ export class QuizQuestionsComponent implements OnInit {
     this.hasErrors = false;
 
     this.answers.forEach(ans => {
-      if (ans.isCorrect && ans.score == 0) {
+      if (ans.correct && ans.score == 0) {
         this.answersError = "Correct answers must have a score.";
         this.hasErrors = true;
         return;
       }
 
-      hasCorrectAnswer = hasCorrectAnswer || ans.isCorrect;
+      hasCorrectAnswer = hasCorrectAnswer || ans.correct;
     });
 
     if (this.hasErrors)

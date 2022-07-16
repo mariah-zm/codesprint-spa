@@ -4,6 +4,8 @@
             <div class="col-md-4 offset-md-4 text-center">
                 <div class="row py-3">
                     <h1 class="text-center ">Log in</h1>
+                </div>
+                <div class="row my-2">
                     <ngb-alert class="alert alert-primary" *ngIf="!isAlertClosed && isRedirected"
                         (close)="isAlertClosed = true">
                         You must login to access this page!

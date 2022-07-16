@@ -11,7 +11,7 @@
                                     <h5 class="card-title mb-3">{{quiz.name}}</h5>
                                     <p class="card-text">{{quiz.description}}</p>
                                     <p><small>{{quiz.amountQuestions}} Questions</small></p>
-                                    <button class="btn btn-custom" [routerLink]="'/answer-quiz'">Start Quiz</button>
+                                    <button class="btn btn-custom" (click)="onStartQuiz(quiz.slug)">Start Quiz</button>
                                 </div>
                             </div>
                         </div>

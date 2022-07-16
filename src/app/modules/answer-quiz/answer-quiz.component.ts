@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { QuizQuestion } from 'src/app/core/models/quiz-question';
 import { QuizResponse } from 'src/app/core/models/quiz-response';
 import { QuizResult } from 'src/app/core/models/quiz-result';
 import { QuizResultService } from 'src/app/core/services/quiz-result.service';
+import { QuizRetrievalService } from 'src/app/core/services/quiz-retrieval.service';
 
 @Component({
   selector: 'app-answer-quiz',
@@ -20,19 +22,20 @@ export class AnswerQuizComponent implements OnInit {
   chosenAnswers: number[] = [];
   missingAnswer = false;
 
+  private retrievalSubscription!: Subscription;  
+
   constructor(
     private router: Router,
-    private quizResultService: QuizResultService
+    private quizResultService: QuizResultService,
+    private retrievalService: QuizRetrievalService
   ) {
     // To retrieve quiz data and answers from BE using id sent from redirect
-    this.quiz = new QuizResponse();
-
-    // Set first question
-    this.currentQuestion = this.quiz.questions[0];
+    this.retrievalSubscription = this.retrievalService.quiz.subscribe(quiz => this.quiz = quiz); 
   }
 
   ngOnInit(): void {
-
+    // Set first question
+    this.currentQuestion = this.quiz.questions[0];
   }
 
   onChangeSingle(choice: number): void {
@@ -64,6 +67,8 @@ export class AnswerQuizComponent implements OnInit {
     else
       result = new QuizResult(passed, this.quiz.msgFail, this.score);
 
+      console.log(this.score);
+
     // Redirect to results screen
     this.quizResultService.updateQuizResult(result);
     this.router.navigate(['answer-quiz/result']);
@@ -79,13 +84,17 @@ export class AnswerQuizComponent implements OnInit {
     // Check if answer is correct
     this.chosenAnswers.forEach(choice => {
       const chosen = this.currentQuestion.answers[choice]
-      if (chosen.isCorrect)
+      if (chosen.correct)
         this.score += chosen.score;
     })
 
     // Resetting variables
     this.missingAnswer = false;
     this.chosenAnswers = [];
+  }
+
+  ngOnDestroy(): void {
+    this.retrievalSubscription?.unsubscribe();
   }
 
 }
