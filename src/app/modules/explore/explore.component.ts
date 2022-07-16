@@ -11,7 +11,6 @@ import { QuizRetrievalService } from 'src/app/core/services/quiz-retrieval.servi
 })
 export class ExploreComponent implements OnInit, OnDestroy {
   quizzes: QuizInfoResponse[] = [];
-  quiz!: QuizResponse;
 
   private retrievalSubscription!: Subscription;
 
@@ -19,7 +18,8 @@ export class ExploreComponent implements OnInit, OnDestroy {
     private router: Router,
     private retrievalService: QuizRetrievalService
   ) {
-    this.retrievalSubscription = this.retrievalService.quiz.subscribe(quiz => this.quiz = quiz);
+    this.retrievalSubscription = this.retrievalService.quizList.subscribe(list => this.quizzes = list);
+    this.retrievalSubscription = this.retrievalService.getQuizzes().subscribe(list => this.quizzes = list);
   }
 
   ngOnInit(): void {

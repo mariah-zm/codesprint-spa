@@ -4,10 +4,10 @@ export class QuizInfoResponse {
     description!: string;
     amountQuestions!: number;
 
-    constructor(name: string, slug: string, desc: string, numQues: number) {
-        this.name = name;
-        this.slug = slug;
-        this.description = desc;
-        this.amountQuestions = numQues;
+    constructor() {
+        this.name = "";
+        this.slug = "";
+        this.description = "";
+        this.amountQuestions = 0;
     }
 }
