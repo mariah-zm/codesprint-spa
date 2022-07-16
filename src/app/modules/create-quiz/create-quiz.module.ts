@@ -7,6 +7,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { QuizInfoComponent } from './quiz-info/quiz-info.component';
 import { QuizQuestionsComponent } from './quiz-questions/quiz-questions.component';
 import { BreakdownComponent } from './breakdown/breakdown.component';
+import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -21,7 +22,8 @@ import { BreakdownComponent } from './breakdown/breakdown.component';
     SharedModule,
     CreateQuizRoutingModule,
     ReactiveFormsModule,
-    CommonModule
+    CommonModule,
+    NgbAlertModule
   ]
 })
 export class CreateQuizModule { }

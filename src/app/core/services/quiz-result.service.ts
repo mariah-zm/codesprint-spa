@@ -18,4 +18,5 @@ export class QuizResultService extends BaseService {
     updateQuizResult(quizResult: QuizResult): void {
         this.quizResultSubject.next(quizResult);
     }
+    
 }  

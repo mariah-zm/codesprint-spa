@@ -4,7 +4,7 @@ export class QuizInfo {
     description!: string;
     passingScore!: number;
     showCorrect!: boolean;
-    msgFail!: boolean;
+    msgFailure!: boolean;
     msgSuccess!: boolean;
 
     constructor(init?: Partial<QuizInfo>) {

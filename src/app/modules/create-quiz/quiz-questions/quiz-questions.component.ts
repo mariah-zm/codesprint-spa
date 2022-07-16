@@ -1,10 +1,11 @@
-import { DOCUMENT } from '@angular/common';
-import { Component, Inject, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { key } from 'ngx-bootstrap-icons';
+
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { QuestionType } from 'src/app/core/models/enums/question-type.enum';
 import { QuizAnswer } from 'src/app/core/models/quiz-answer';
 import { QuizQuestion } from 'src/app/core/models/quiz-question';
+import { QuizCreationService } from 'src/app/core/services/quiz-creation.service';
 
 @Component({
   selector: 'app-quiz-questions',
@@ -36,7 +37,8 @@ export class QuizQuestionsComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    @Inject(DOCUMENT) private document: Document
+    private router: Router,
+    private quizService: QuizCreationService
   ) {
     this.quesForm = this.formBuilder.group({
       question: ['', [Validators.required, Validators.maxLength(250)]]
@@ -117,7 +119,12 @@ export class QuizQuestionsComponent implements OnInit {
 
     // Create question with inputs from form
     this.question = new QuizQuestion(this.quesForm.controls['question'].value, this.questionType, this.answers);
-    console.log(this.question);
+    const quiz = this.quizService.getQuiz();
+    quiz.questions.push(this.question);
+
+    // Redirect to breakdown screen
+    this.quizService.updateQuiz(quiz);
+    this.router.navigate(['create-quiz/breakdown']);
 
     // Call backend to save quiz
     // Redirect to quiz created page where a link to view quiz can be clicked
