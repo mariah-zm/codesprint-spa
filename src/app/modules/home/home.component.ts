@@ -22,8 +22,6 @@ export class HomeComponent implements OnDestroy {
 
     this.authSubscription = this.authService.isUserAuthenticated.subscribe(isAuthenticated => this.isSignedIn = isAuthenticated);
     this.userSubscription = this.authService.user.subscribe(user => this.user = user);
-
-    console.log(this.user)
   }
 
   ngOnDestroy(): void {

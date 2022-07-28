@@ -67,8 +67,6 @@ export class AnswerQuizComponent implements OnInit {
     else
       result = new QuizResult(passed, this.quiz.msgFail, this.score);
 
-      console.log(this.score);
-
     // Redirect to results screen
     this.quizResultService.updateQuizResult(result);
     this.router.navigate(['answer-quiz/result']);

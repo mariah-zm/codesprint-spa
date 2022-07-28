@@ -30,7 +30,6 @@ export class QuizRetrievalService extends BaseService {
             { withCredentials: true, headers: { correlation_id: uuidv4() } })
             .pipe(
                 tap((list: QuizInfoResponse[]) => {
-                    console.log(list)
                     this.quizListSubject.next(list);
                 }),
                 catchError(this.handleError)
